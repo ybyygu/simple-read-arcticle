@@ -6,10 +6,50 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; max-width: 850px; margin: 0 auto; padding: 20px; }
         p { line-height: 1.6; margin: 1em 0; }
-        .translated { color: #2c3e50; border-left: 3px solid #3498db; padding-left: 1em; }
-        .translated:hover { background-color: #f8f9fa; }
-        .original { display: none; color: #7f8c8d; border-left: 3px solid #e74c3c; padding-left: 1em; }
-        .original:hover { background-color: #f8f9fa; }
+        
+        /* 文本块样式 */
+        .text-block {
+            position: relative;
+            margin: 1em 0;
+        }
+        .translated, .original {
+            transition: opacity 0.2s ease;
+            padding-left: 1em;
+        }
+        .translated {
+            color: #2c3e50;
+            border-left: 3px solid #3498db;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 1;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .original {
+            color: #7f8c8d;
+            border-left: 3px solid #e74c3c;
+            opacity: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .text-block:hover .translated {
+            opacity: 0;
+        }
+        .text-block:hover .original {
+            opacity: 1;
+            background-color: #f8f9fa;
+        }
+        
+        /* 显示所有原文模式的样式 */
+        .show-original .translated {
+            opacity: 0;
+        }
+        .show-original .original {
+            opacity: 1;
+        }
+        
         .image-container {
             margin: 30px 0;
             text-align: center;
@@ -280,14 +320,14 @@ Table 2. IRCNN, Fcg-Former, DTs, and KNN Performance Summary on Test Data</a></l
   <img src="figures/img_1.png" class="image-content" alt="Figure 1" data-figure="1" />
   <div class="image-info">图像位置: 第 0 页, 边界框: x0=337.98, y0=257.44, x1=472.23, y1=388.28</div>
 </div>
-<div class="text-block" id="block-TB0002">
-  <p class="translated" title="点击切换原文/译文">摘要：深度学习(DL)在各科学领域，尤其是在化学应用中，作为一种实用工具正变得越来越受欢迎。在红外光谱领域，未知化合物中官能团的识别面临巨大挑战，因此迫切需要创新方法来简化和加强分析过程。本研究引入了一种变革性方法，利用基于transformer注意力模型的DL方法。该模型利用包含约8677个光谱的数据集，利用自注意力机制捕获复杂的光谱特征，并精确预测17个官能团，在官能团预测准确性和化合物水平精度方面均优于传统架构。我们的方法成功地强调了基于transformer的方法在增强光谱分析技术方面的潜力。</p>
+<div class="text-block" id="block-TB0002" title="鼠标悬停查看原文">
   <p class="original">ABSTRACT: Deep learning (DL) is becoming more popular as a useful tool in various scientific domains, especially in chemistry applications. In the infrared spectroscopy field, where identifying functional groups in unknown compounds poses a significant challenge, there is a growing need for innovative approaches to streamline and enhance analysis processes. This study introduces a transformative approach leveraging a DL methodology based on transformer attention models. With a data set containing approximately 8677 spectra, our model utilizes self-attention mechanisms to capture complex spectral features and precisely predict 17 functional groups, outperforming conventional architectures in both functional group prediction accuracy and compound-level precision. The success of our approach underscores the potential of transformer-based methodologies in enhancing spectral analysis techniques.</p>
+  <p class="translated">摘要：深度学习(DL)在各科学领域，尤其是在化学应用中，作为一种实用工具越来越受欢迎。红外光谱领域中，未知化合物中官能团的识别面临巨大挑战，因此迫切需要创新方法来简化和加强分析过程。本研究引入了一种变革性方法，利用基于transformer attention模型的DL方法。该模型使用包含约8677个光谱的数据集，利用自注意力机制捕获复杂的光谱特征，并精确预测17个官能团，在官能团预测准确性和化合物水平精度方面均优于传统架构。该方法的成功突显了基于transformer的方法在增强光谱分析技术方面的潜力。</p>
 </div>
 <h4 id="title-9"> INTRODUCTION</h4>
-<div class="text-block" id="block-TB0003">
-  <p class="translated" title="点击切换原文/译文">官能团用于识别化合物的物理性质，包括沸点、熔点、溶解度和粘度。通过识别官能团，研究人员可以对化合物进行分类，有助于其表征和鉴定。在药物化学领域，官能团在确定化合物的生物活性和药理学性质方面起着关键作用。特定的官能团可能赋予理想的治疗效果或影响化合物与生物靶标的相互作用。理解这些关系对于药物设计和优化至关重要。在聚合物化学中，通过控制官能团的类型和分布，研究人员可以定制其机械、热和化学性质，用于材料科学、工程和生物医学等特定应用。因此，官能团的知识对于理解和预测物质在各种环境中的行为至关重要。</p>
+<div class="text-block" id="block-TB0003" title="鼠标悬停查看原文">
   <p class="original">Functional groups serve to identify the physical properties including boiling point,1 melting point,2 solubility,3 and viscosity4 of chemical compounds. By recognizing functional groups, researchers can classify and categorize compounds, aiding in their characterization and identification.5 In the field of medicinal chemistry, functional groups play a critical role in determining a compound's biological activity and pharmacological properties.6 Specific functional groups might impart desirable therapeutic effects or influence the compound's interaction with biological targets.7 Understanding these relationships is essential for drug design and optimization. In polymer chemistry, by controlling the types and distribution of functional groups, researchers can tailor their mechanical, thermal, and chemical properties for specific applications, such as in materials science, engineering, and biomedicine.8−10 Knowledge of functional groups is thus essential for understanding and predicting the behavior of substances in various environments.</p>
+  <p class="translated">官能团用于识别化合物的物理性质，包括沸点,1 熔点,2 溶解度,3 和粘度4。通过识别官能团，研究人员可以对化合物进行分类，有助于其表征和鉴定5。在药物化学领域，官能团在确定化合物的生物活性和药理学性质方面起着关键作用6。特定的官能团可能赋予理想的治疗效果或影响化合物与生物靶标的相互作用7。理解这些关系对于药物设计和优化至关重要。在聚合物化学中，通过控制官能团的类型和分布，研究人员可以定制其机械、热和化学性质，用于材料科学、工程和生物医学等特定应用8−10。因此，官能团的知识对于理解和预测物质在各种环境中的行为至关重要。</p>
 </div>
 <div class="image-container" id="figure-2-1">
   <div class="figure-number">Figure 2</div>
@@ -296,9 +336,9 @@ Table 2. IRCNN, Fcg-Former, DTs, and KNN Performance Summary on Test Data</a></l
   <div class="image-info">图像位置: 第 0 页, 边界框: x0=51.62, y0=758.96, x1=166.10, y1=782.46</div>
 </div>
 <p>Functional groups are specific arrangements of atoms within a molecule that give the compound its unique chemical</p>
-<div class="text-block" id="block-TB0005">
-  <p class="translated" title="点击切换原文/译文">特性。红外(IR)光谱是一种广泛使用的定性和定量分析方法，用于识别和表征化学化合物，依赖于其分子振动。当样品暴露于红外辐射时，某些波长会被其化学键选择性吸收，从而引起量子化振动能级之间的跃迁。即使在最低能量状态（称为零点能量）下，分子键也具有内在的振动能量。红外辐射的吸收提供了将分子从较低振动状态提升到较高振动状态所需的精确能量。每种类型的化学键都具有与其相关的特征振动频率，对应于这些量子化的能量差</p>
+<div class="text-block" id="block-TB0005" title="鼠标悬停查看原文">
   <p class="original">characteristics.11 Infrared (IR) spectroscopy is a widely used qualitative and quantitative analytical method utilized for the identification and characterization of chemical compounds, relying on their molecular vibrations.12 When a sample is exposed to infrared radiation, certain wavelengths are selectively absorbed by its chemical bonds, causing transitions between quantized vibrational energy levels.13 Even at the lowest energy state, known as the zero point energy, molecular bonds possess intrinsic vibrational energy.14 The absorption of infrared radiation provides the exact amount of energy required to elevate the molecule from a lower vibrational state to a higher one.15 Each type of chemical bond has a characteristic vibrational frequency associated with it, corresponding to the energy difference between these quantized</p>
+  <p class="translated">特性11。红外(IR)光谱是一种广泛使用的定性和定量分析方法，用于识别和表征化学化合物，依赖于其分子振动12。当样品暴露于红外辐射时，某些波长会被其化学键选择性吸收，导致量子化振动能级之间的跃迁13。即使在最低能量状态（称为零点能量）下，分子键也具有内在的振动能量14。红外辐射的吸收提供了将分子从较低振动状态提升到较高振动状态所需的精确能量15。每种类型的化学键都具有与其相关的特征振动频率，对应于这些量子化之间的能量差</p>
 </div>
 <p>Received: March 28, 2024 Revised: June 28, 2024 Accepted: June 28, 2024 Published: July 15, 2024</p>
 <div class="image-container" id="figure-2-2">
@@ -315,41 +355,42 @@ Table 2. IRCNN, Fcg-Former, DTs, and KNN Performance Summary on Test Data</a></l
 </div>
 <h3 id="title-22"></h3>
 <p>levels.16 This characteristic absorption allows IR spectroscopy to detect and analyze the structural features of organic compounds effectively.15</p>
-<div class="text-block" id="block-TB0008">
-  <p class="translated" title="点击切换原文/译文">通过IR光谱产生的IR光谱通常通过手动标记与特定官能团相对应的所有相关峰来研究。即使有研究人员的专业知识和可用文件的帮助，这种手动程序也很耗时，尤其是在复杂化合物的情况下。此外，影响样品成分的各种物理和化学因素可能会导致特定官能团的结构环境发生变化，</p>
+<div class="text-block" id="block-TB0008" title="鼠标悬停查看原文">
   <p class="original">The IR spectra produced from IR spectroscopy are typically investigated by manually marking all relevant peaks corresponding to specific functional groups. Even with the expertise of researchers and the assistance of available documents, this manual procedure is time-consuming, especially in the case of complex compounds. Moreover, various physical and chemical factors that affect the sample's constituents may cause changes in the structural environment of specific functional groups,</p>
+  <p class="translated">通过IR光谱产生的IR光谱通常通过手动标记与特定官能团相对应的所有相关峰来研究。即使有研究人员的专业知识和现有文件的帮助，这种手动程序也很耗时，尤其是在复杂化合物的情况下。此外，影响样品成分的各种物理和化学因素可能会导致特定官能团的结构环境发生变化，</p>
 </div>
-<div class="text-block" id="block-TB0009">
-  <p class="translated" title="点击切换原文/译文">导致这些基团的典型峰值频率与其代表性范围产生显着偏差。大多数IR光谱的指纹区(400−1500 cm−1)可能存在重叠现象。由于每种材料的独特属性都包含在此频段中，因此研究人员更难以识别特定的峰和相应的官能团。为了减少手动解释的低效率，建议在分析IR光谱时采用计算机和AI辅助方法，例如创新的深度学习(DL)。</p>
+<div class="text-block" id="block-TB0009" title="鼠标悬停查看原文">
   <p class="original">leading to notable deviations in those groups' typical peak frequencies from their representative ranges.17 There might be an overlap phenomenon in the fingerprint region (400−1500 cm−1 
 ) of most IR spectra. Because each material's distinctive properties are contained in this frequency band, it becomes much more difficult for researchers to identify specific peaks and corresponding functional groups. To reduce the inefficiency of manual interpretation, the computer and AIaided approach such as innovative deep learning (DL) is suggested when analyzing the IR spectra.</p>
+  <p class="translated">导致这些基团的典型峰值频率与其代表性范围产生显着偏差17。大多数IR光谱的指纹区(400−1500 cm−1 
+)可能存在重叠现象。由于每种材料的独特属性都包含在此频段中，因此研究人员更难以识别特定的峰和相应的官能团。为了减少手动解释的低效率，建议在分析IR光谱时采用计算机和AI辅助方法，例如创新的深度学习(DL)。</p>
 </div>
 <p>Figure 1. Distribution of (A) training data set, (B) validation data set, and (C) test data set.</p>
 <h3 id="title-28"></h3>
-<div class="text-block" id="block-TB0011">
-  <p class="translated" title="点击切换原文/译文">DL是机器学习的一个子集，它利用神经网络像人脑一样处理数据。这些计算机模型经过训练，可以从原始数据中提取特征并进行预测和分类。可以训练DL模型在化学中基于IR光谱预测化合物中特定官能团的存在与否。当处理具有多个重叠峰的复杂光谱时，这尤其有用。最近，有几项研究报告使用DL模型来研究IR光谱。该领域中最成功和有效的模型是卷积神经网络(CNN)或基于CNN的模型，因其在预测官能团方面的卓越功效而得到认可。然而，仅基于官能团预测精度评估这些模型可能会导致不完整的评估。必须还要考虑模型在预测整个分子方面的准确性。这种考虑源于数据不平衡问题，其中某些官能团在数据集中比其他官能团更普遍。为了说明，如果一个分子包含五个官能团，并且一个模型准确地预测了五个中的四个，则传统的准确性指标可能表明成功率为80％。但是，从预测整个分子的角度来看，准确性将为0％。这强调需要一个更全面的评估框架，包括官能团预测精度和化合物水平的准确性。</p>
+<div class="text-block" id="block-TB0011" title="鼠标悬停查看原文">
   <p class="original">DL is a subset of machine learning that harnesses neural networks to process data like human brains. These computer models are trained to extract features from raw data and make predictions and classifications. DL models can be trained in chemistry to predict the presence or absence of specific functional groups in chemical compounds based on IR spectra.18 This is particularly useful when dealing with complex spectra with multiple overlapping peaks.19 Recently, several studies were reported using DL models to investigate the IR spectra. The most successful and efficient model presented in this field is the convolutional neuron network (CNN) or CNN-based model,18−27 recognized for its remarkable efficacy in predicting functional groups. However, evaluating these models solely based on functional group prediction precision may lead to an incomplete assessment. It is imperative to also consider the accuracy of the model in predicting entire molecules. This consideration arises from data imbalance issues, where certain functional groups are more prevalent than others within the data set. To illustrate, if a molecule comprises five functional groups and a model accurately predicts four out of the five, conventional accuracy metrics may suggest an 80% success rate. However, from the perspective of predicting the entire molecule, the accuracy would be 0%. This underscores the need for a more comprehensive evaluation framework encompassing functional group prediction precision and compound-level accuracy.</p>
+  <p class="translated">DL是机器学习的一个子集，它利用神经网络像人脑一样处理数据。这些计算机模型经过训练，可以从原始数据中提取特征并进行预测和分类。DL模型可以在化学中进行训练，以基于IR光谱预测化学化合物中特定官能团的存在与否18。这在处理具有多个重叠峰的复杂光谱时特别有用19。最近，有几项研究报告使用DL模型来研究IR光谱。该领域中最成功和有效的模型是卷积神经网络(CNN)或基于CNN的模型18−27，以其在预测官能团方面的卓越功效而闻名。然而，仅基于官能团预测精度评估这些模型可能会导致不完整的评估。必须还要考虑模型在预测整个分子方面的准确性。这种考虑源于数据不平衡问题，其中某些官能团在数据集中比其他官能团更普遍。为了说明，如果一个分子包含五个官能团，并且一个模型准确地预测了五个中的四个，则传统的准确性指标可能表明成功率为80％。但是，从预测整个分子的角度来看，准确性将为0％。这突显了需要一个更全面的评估框架，包括官能团预测精度和化合物水平的准确性。</p>
 </div>
-<div class="text-block" id="block-TB0012">
-  <p class="translated" title="点击切换原文/译文">近年来，transformer模型已成为各种机器学习应用的基石，以其在处理信号、图像、语音和文本等各种数据类型方面的卓越能力彻底改变了该领域。最初为自然语言处理任务引入的transformer架构，在包括翻译、时间序列预测和信号分类在内的各个领域都表现出了卓越的性能。对于官能团表征的机器学习模型的现有格局的概述，诸如1D-CNN、循环神经网络(RNN)和长短期记忆等传统模型，在历史上一直主导着官能</p>
+<div class="text-block" id="block-TB0012" title="鼠标悬停查看原文">
   <p class="original">In recent years, transformer models have emerged as the cornerstone of various machine learning applications, revolutionizing the field with their remarkable capabilities in handling diverse data types such as signals, images, speech, and text.28 The transformer architecture, initially introduced for natural language processing tasks,29 has showcased exceptional performance across various domains, including translation,30,31 time series forecasting,32−34 and signal classification.35−39 Overview of the existing landscape of machine learning models for functional group characterization, traditional models, such as 1D-CNNs, recurrent neural networks (RNNs),40 and long short-term memory,41 have historically dominated functional</p>
+  <p class="translated">近年来，transformer模型已成为各种机器学习应用的基石，以其在处理信号、图像、语音和文本等各种数据类型方面的卓越能力彻底改变了该领域28。transformer架构最初是为自然语言处理任务而引入的29，已在包括翻译30,31、时间序列预测32−34和信号分类35−39在内的各个领域展示了卓越的性能。用于官能团表征的机器学习模型的现有格局概述，传统模型，如1D-CNN、循环神经网络(RNN)40和长短期记忆41，在历史上一直主导着官能</p>
 </div>
-<div class="text-block" id="block-TB0013">
-  <p class="translated" title="点击切换原文/译文">组分析任务。尽管取得了这些成就，但在文献中仍然存在一个明显的差距，即transformer模型在化学光谱信号中的应用，尤其是在官能团表征数据集中。</p>
+<div class="text-block" id="block-TB0013" title="鼠标悬停查看原文">
   <p class="original">group analysis tasks.19,27,36,42−47 Despite these achievements, there remains a noticeable gap in the literature regarding the application of transformer models to chemical spectra signals, particularly in the functional group characterization data sets.</p>
+  <p class="translated">团分析任务19,27,36,42−47。尽管取得了这些成就，但在文献中，关于transformer模型在化学光谱信号中的应用，特别是在官能团表征数据集中，仍然存在明显的差距。</p>
 </div>
-<div class="text-block" id="block-TB0014">
-  <p class="translated" title="点击切换原文/译文">为了探索在该领域采用transformer方法相关的潜在益处和挑战，使用了一种基于注意力的transformer模型来预测IR光谱中的官能团。transformer模型的架构，包括17个多标签官能团作为输入，如图1所示。通过评估官能团预测的准确性和化合物水平预测的精度来评估模型的性能。</p>
+<div class="text-block" id="block-TB0014" title="鼠标悬停查看原文">
   <p class="original">To explore the potential benefits and challenges associated with adopting transformer approaches in this domain, an attention-based transformer model was utilized for predicting the function groups within IR spectra. The architecture of the transformer model, encompassing 17 multilabel functional groups as inputs, is depicted in Figure 1. The model's performance was evaluated by assessing both the accuracy of functional group predictions and the precision of compoundlevel predictions.</p>
+  <p class="translated">为了探索在该领域采用transformer方法相关的潜在益处和挑战，使用基于注意力的transformer模型来预测IR光谱中的官能团。transformer模型的架构，包括17个多标签官能团作为输入，如图1所示。通过评估官能团预测的准确性和化合物水平预测的精度来评估模型的性能。</p>
 </div>
 <h3 id="title-33"> MATERIALS AND METHODS</h3>
-<div class="text-block" id="block-TB0015">
-  <p class="translated" title="点击切换原文/译文">数据收集和官能团分配。我们从美国国家标准与技术研究院(NIST)化学WebBook获得了所有化合物的FTIR吸收光谱。这些光谱最初以JDX格式下载，然后转换为XY文件。最后，按照物种文件中概述的规范，将所有转换后的光谱合并并存储在单个CSV文件中。我们使用PubChem API将每种化合物的ID与IUPAC InChi字符串匹配。之后，RDKit在每个字符串上进行子结构匹配，以确定是否存在预定的化合物拓扑。独立测试每个SMARTS字符串，如果找到匹配项，则将官能团分类为属于相应的化合物。另一组光谱（一个外部数据集），包括17个光谱，是从排放测量中心光谱数据库下载的。所有光谱的处理方式与NIST化学WebBook中的光谱相同。</p>
+<div class="text-block" id="block-TB0015" title="鼠标悬停查看原文">
   <p class="original">Data Collection and Functional Groups Assignment. We obtained the FTIR absorbance spectra for all compounds from the National Institute of Standards and Technology (NIST) Chemistry WebBook.48 These spectra were initially downloaded in the JDX format and subsequently converted to XY files. Finally, all converted spectra were consolidated and stored in a single CSV file, as per the specifications outlined in a species file. We match the ID of each compound to the IUPAC InChi strings by using the PubChem API.49 Substructure matching was afterward carried out by RDKit on each string to determine whether a predetermined compound topology was present.50 Each SMARTS string was tested independently and if a match was found, the functional group was classified as belonging to the corresponding compound. Another group of spectra�an external data set�including 17 spectra was downloaded from the Emission Measurement Center Spectral Database. All spectra were processed the same way as those from the NIST Chemistry WebBook.</p>
+  <p class="translated">数据收集和官能团分配。我们从National Institute of Standards and Technology (NIST) Chemistry WebBook48获得了所有化合物的FTIR吸收光谱。这些光谱最初以JDX格式下载，然后转换为XY文件。最后，按照物种文件中概述的规范，将所有转换后的光谱合并并存储在单个CSV文件中。我们使用PubChem API49将每种化合物的ID与IUPAC InChi字符串匹配。之后，RDKit在每个字符串上进行子结构匹配，以确定是否存在预定的化合物拓扑结构50。每个SMARTS字符串都经过独立测试，如果找到匹配项，则将官能团分类为属于相应的化合物。另一组光谱（外部数据集）包括从Emission Measurement Center Spectral Database下载的17个光谱。所有光谱的处理方式与NIST Chemistry WebBook中的光谱相同。</p>
 </div>
-<div class="text-block" id="block-TB0016">
-  <p class="translated" title="点击切换原文/译文">框架。图2描述了全面的FITR官能团分类流程图，包括输入光谱的准备、数据分割成单个分子内的官能团、训练-验证-测试数据</p>
+<div class="text-block" id="block-TB0016" title="鼠标悬停查看原文">
   <p class="original">Framework. Figure 2 depicts the comprehensive FITR functional groups classification flowchart, encompassing the preparation of input spectra, data segmentation into functional groups within a single molecule, training-validation-testing data</p>
+  <p class="translated">框架。图2描述了全面的FITR官能团分类流程图，包括输入光谱的准备、数据分割成单个分子内的官能团、训练-验证-测试数据</p>
 </div>
 <div class="image-container" id="figure-4-1">
   <div class="figure-number">Figure 4</div>
@@ -358,14 +399,15 @@ Table 2. IRCNN, Fcg-Former, DTs, and KNN Performance Summary on Test Data</a></l
   <div class="image-info">图像位置: 第 2 页, 边界框: x0=83.32, y0=47.87, x1=520.63, y1=290.46</div>
 </div>
 <p>Figure 2. Process for classifying FTIR spectra using two models, one based on convolutional neural network (IRCNN) and the other on transformer architecture.</p>
-<div class="text-block" id="block-TB0018">
-  <p class="translated" title="点击切换原文/译文">拼接、DL网络的利用、超参数的优化、模型比较、后处理和模型的部署。首先，最初以CSV文件中XY格式呈现的光谱，被转换为NumPy格式的统一1D阵列数据集。然后，将每个数据与相应的文本注释文件配对。为了确保均匀性，通过采用线性插值法（如公式1中所定义），将所有光谱标准化为一组一致的特征点（3600个点，范围从400到4000 cm−1）。还研究了有关每个分子中存在的官能团数量的光谱数据。单个分子中官能团的最大数量为7个，并且每个组的分布显示出不平衡，如图S1A−C所示。然后将光谱分割成七个组以解决这种不平衡。该方法确保模型在准确表示官能团分布的数据集上进行训练和评估，从而促进关于每个分子官能团数量的更平衡的数据集。随后，所有组被随机划分为训练集、验证集和测试集，分配比率分别为75％、15％和10％。在训练过程中，使用min−max归一化方法将输入光谱值缩放到0到1的范围内，从而确保一致的数据尺度。</p>
+<div class="text-block" id="block-TB0018" title="鼠标悬停查看原文">
   <p class="original">splicing, utilization of a DL network, optimization of hyperparameters, model comparison, postprocessing, and the deployment of the model. First, the spectra, initially presented in XY format within a CSV file, underwent conversion into a unified 1D-array data set in NumPy format. Each data was then paired with a corresponding text annotation file. To ensure uniformity, all spectra were standardized to a consistent set of feature points (3600 points spanning the range from 400 to 4000 cm−1 
 ) by employing the linear interpolation method, as defined in eq 1. The spectra data concerning the number of functional groups that existed in each molecule were also investigated. The maximum number of functional groups in a single molecule is seven, and the distribution of each group reveals an imbalance, as illustrated in Figure S1A−C. Spectra were then segmented into seven groups to address this imbalance. This method ensures that models are trained and evaluated on data sets accurately representing the distribution of functional groups, thereby promoting a more balanced data set regarding the number of functional groups per molecule.51 Subsequently, all groups were randomly partitioned into training, validation, and test sets with allocation ratios of 75, 15, and 10%, respectively. During the training process, input spectra values were scaled to a range of 0 to 1 using the min− max normalization method, ensuring consistent data scales.</p>
+  <p class="translated">拼接、DL网络的利用、超参数的优化、模型比较、后处理和模型的部署。首先，最初以CSV文件中的XY格式呈现的光谱被转换为NumPy格式的统一1D阵列数据集。然后，将每个数据与相应的文本注释文件配对。为了确保统一性，通过采用线性插值法（如公式1中所定义），将所有光谱标准化为一组一致的特征点（3600个点，范围从400到4000 cm−1 
+）。还研究了有关每个分子中存在的官能团数量的光谱数据。单个分子中官能团的最大数量为7个，并且每个基团的分布显示出不平衡，如图S1A−C所示。然后将光谱分割成七个组以解决这种不平衡。此方法确保模型在准确表示官能团分布的数据集上进行训练和评估，从而促进关于每个分子官能团数量的更平衡的数据集51。随后，所有组被随机划分为训练集、验证集和测试集，分配比率分别为75％、15％和10％。在训练过程中，使用min− max归一化方法将输入光谱值缩放到0到1的范围，从而确保一致的数据比例。</p>
 </div>
-<div class="text-block" id="block-TB0019">
-  <p class="translated" title="点击切换原文/译文">我们对17类官能团进行了多标签分类，基于测试集评估了基于CNN的模型（特别是IRCNN，一种已发布的模型）和我们提出的基于transformer的模型的性能。外部数据集用于进一步评估我们模型的可靠性。还使用了两种经典的机器学习分类器：决策树(DT)和K近邻(KNN)与我们提出的模型进行比较。</p>
+<div class="text-block" id="block-TB0019" title="鼠标悬停查看原文">
   <p class="original">We conducted a multilabel classification with 17 classes of functional groups, assessing the performance of both the CNN-based model27 (specifically IRCNN, a published model) and our proposed transformer-based model based on the test set. The external data set was used to further evaluate our model's reliability. Two classical machine learning classifiers: decision trees (DTs) and K-nearest neighbors (KNN) were also used to compare with our proposed model.</p>
+  <p class="translated">我们对17类官能团进行了多标签分类，基于测试集评估了基于CNN的模型27（特别是IRCNN，一种已发布的模型）和我们提出的基于transformer的模型的性能。外部数据集用于进一步评估我们模型的可靠性。还使用了两种经典的机器学习分类器：决策树(DT)和K近邻(KNN)与我们提出的模型进行比较。</p>
 </div>
 <p>y y x x y y x x 
 ( )( ) 1 
@@ -380,27 +422,27 @@ Table 2. IRCNN, Fcg-Former, DTs, and KNN Performance Summary on Test Data</a></l
   <div class="image-caption"> </div>
   <div class="image-info">图像位置: 第 3 页, 边界框: x0=86.68, y0=49.31, x1=534.54, y1=276.90</div>
 </div>
-<div class="text-block" id="block-TB0023">
-  <p class="translated" title="点击切换原文/译文">(IRCNN)是一种用于识别有机分子中官能团的DL方法。与其他利用人工神经网络的方法不同，IRCNN采用滑动卷积滤波器，该滤波器在输入特征上具有共享权重架构，从而产生称为特征图的平移等变响应。在这项研究中，我们选择重新实现IRCNN模型，该模型提供了一种新颖的光谱解释方法。IRCNN架构由两个卷积块、一个扁平层、三个密集层和一个激活层组成。我们利用PyTorch进行重新实现，同时保持所有参数与原始论文一致，如论文本身和提供的GitHub链接https://github.com/gj475/irchracterizationcnn中所述。每个卷积块由一个密集卷积层、批量归一化、ReLU激活和一个最大池化层组成。在激活层中，与典型的分类任务不同，光谱信号对应于多个类标签。因此，作者选择sigmoid激活而不是softmax激活来适应这些多标签类标签。IRCNN架构如图3所示。</p>
+<div class="text-block" id="block-TB0023" title="鼠标悬停查看原文">
   <p class="original">(IRCNN)27 is a DL method proposed for identifying functional groups within organic molecules. Unlike other approaches that utilize artificial neural networks, IRCNN employs sliding convolutional filters with a shared-weight architecture across input features, resulting in translational equivariant responses referred to as feature maps. In this research, we chose to reimplement the IRCNN model, which offers a novel spectral interpretation approach. The IRCNN architecture is composed of two convolution blocks, one flattened layer, three dense layers, and one activation layer. We utilized PyTorch to carry out the reimplementation while maintaining all parameters consistent with the original paper, as detailed in both the paper itself and a provided GitHub link at https://github.com/gj475/irchracterizationcnn. Each convolution block consists of a dense convolution layer, batch normalization, ReLU activation, and a max-pooling layer. In the activation layer, unlike typical classification tasks, the spectra signal corresponds to multiple class labels. Consequently, the authors opted for sigmoid activation instead of softmax activation to accommodate these multilabel class labels. The IRCNN architecture is shown in Figure 3.</p>
+  <p class="translated">(IRCNN)27是一种用于识别有机分子中官能团的DL方法。与其他利用人工神经网络的方法不同，IRCNN采用滑动卷积滤波器，该滤波器在输入特征上具有共享权重架构，从而产生平移等变响应，称为特征图。在这项研究中，我们选择重新实现IRCNN模型，该模型提供了一种新颖的光谱解释方法。IRCNN架构由两个卷积块、一个扁平化层、三个密集层和一个激活层组成。我们利用PyTorch进行重新实现，同时保持所有参数与原始论文一致，如论文本身和提供的GitHub链接https://github.com/gj475/irchracterizationcnn中所述。每个卷积块由一个密集卷积层、批量归一化、ReLU激活和一个最大池化层组成。在激活层中，与典型的分类任务不同，光谱信号对应于多个类标签。因此，作者选择sigmoid激活而不是softmax激活来适应这些多标签类标签。IRCNN架构如图3所示。</p>
 </div>
-<div class="text-block" id="block-TB0024">
-  <p class="translated" title="点击切换原文/译文">Transformer架构。我们提出了一种直接采用完整transformer架构的方法，该架构最初被设计为神经机器翻译模型。该模型通过注意力机制的辅助，特别有效地处理顺序数据。transformer网络利用编码器-解码器架构的基本概念，每个块都包含简单的词嵌入、注意力机制和softmax。它避免了RNN或CNN中存在的结构复杂性。编码器从输入序列中提取特征，而解码器利用这些特征来生成输出序列。在这项研究中，我们的主要目标是光谱分类。因此，我们选择仅实现编码器部分，该部分旨在学习适合有效分类任务的嵌入。transformer架构中的编码器组件在理解和从输入序列中提取相关信息方面起着至关重要的作用。多年来，已经使用了许多仅编码器的架构，这些架构从原始编码器模块中汲取灵感</p>
+<div class="text-block" id="block-TB0024" title="鼠标悬停查看原文">
   <p class="original">Transformer Architecture. We propose an approach that directly adapts the full transformer architecture,29 initially designed as a neural machine translation model. This model is particularly effective for handling sequential data through the aiding of attention mechanisms.52 The transformer network utilizes fundamental concepts of an encoder-decoder architecture, with each block incorporating simple word embeddings, attention mechanisms, and softmax. It avoids the structural complexities present in RNNs or CNNs. The encoder extracts features from an input sequence, while the decoder utilizes these features to generate an output sequence. In this study, our primary objective is spectra classification. Therefore, we opted to implement only the encoder part, which is designed to learn embeddings suitable for the efficient classification task. The encoder component in transformer architecture plays a vital role in comprehending and extracting relevant information from the input sequence. Over the years, numerous encoder-only architectures have been utilized, drawing inspiration from the encoder module of the original</p>
+  <p class="translated">Transformer架构。我们提出了一种直接采用完整transformer架构的方法29，该架构最初被设计为神经机器翻译模型。该模型通过注意力机制的辅助，特别有效地处理顺序数据52。transformer网络利用编码器-解码器架构的基本概念，每个块都包含简单的词嵌入、注意力机制和softmax。它避免了RNN或CNN中存在的结构复杂性。编码器从输入序列中提取特征，而解码器利用这些特征来生成输出序列。在这项研究中，我们的主要目标是光谱分类。因此，我们选择仅实现编码器部分，该部分旨在学习适合有效分类任务的嵌入。transformer架构中的编码器组件在理解和从输入序列中提取相关信息方面起着至关重要的作用。多年来，已经使用了许多仅编码器的架构，这些架构从原始编码器模块中汲取了灵感</p>
 </div>
 <h4 id="title-49">
 Figure 3. IRCNN architecture.</h4>
-<div class="text-block" id="block-TB0025">
-  <p class="translated" title="点击切换原文/译文">transformer模型。示例包括BERT (bidirectional encoder representations from transformers)、RoBERTa (a Robustly optimized BERT pretraining approach)和ViT (vision transformer)。这些架构在推进各种分类领域方面发挥了重要作用。尽管transformer架构已成为自然语言处理和视觉任务的最新技术(SOTA)，但其在化学信号中的应用仍然有限。在这项研究中，我们介绍了一种受transformer编码器架构和ViT模型启发的transformer模型(Fcg-former)(图4A)。通过调整该架构以处理信号补丁序列，我们的方法在光谱分类任务中表现出了出色的性能。与在相同资源上训练的SOTA卷积网络相比，利用注意力机制，Fcg-former取得了显著的成果。Fcgformer的总体架构如图4所示。</p>
+<div class="text-block" id="block-TB0025" title="鼠标悬停查看原文">
   <p class="original">transformer model. Examples include BERT (bidirectional encoder representations from transformers),53 RoBERTa (a Robustly optimized BERT pretraining approach),54 and ViT (vision transformer).55 These architectures have been instrumental in advancing various classification domains. Despite the transformer architecture's emergence as state-ofthe-art (SOTA) for natural language processing and vision tasks, its application to chemical signals has remained limited. In this study, we introduced a transformer model (Fcg-former) (Figure 4A) inspired by the transformer encoder architecture and the ViT model. By adapting this architecture to process sequences of signal patches, our approach has shown outstanding performance on spectra classification tasks. Leveraging attention mechanisms, Fcg-former achieves remarkable results compared to SOTA convolutional networks trained on the same resources. The overall architecture of Fcgformer is shown in Figure 4.</p>
+  <p class="translated">transformer模型。示例包括BERT (bidirectional encoder representations from transformers)53、RoBERTa (a Robustly optimized BERT pretraining approach)54和ViT (vision transformer)55。这些架构在推进各种分类领域方面发挥了重要作用。尽管transformer架构已成为自然语言处理和视觉任务的最先进(SOTA)技术，但其在化学信号中的应用仍然有限。在这项研究中，我们介绍了一种受transformer编码器架构和ViT模型启发的transformer模型(Fcg-former)(图4A)。通过调整此架构以处理信号补丁序列，我们的方法在光谱分类任务中表现出色。与在相同资源上训练的SOTA卷积网络相比，利用注意力机制，Fcg-former取得了显著成果。Fcgformer的总体架构如图4所示。</p>
 </div>
-<div class="text-block" id="block-TB0026">
-  <p class="translated" title="点击切换原文/译文">自注意力(图4B)是transformer编码器中使用的一种关键机制，使模型能够在处理每个元素（token）时关注输入序列的不同部分。自注意力机制生成输入嵌入的三个版本：queries, keys和values。这些是原始嵌入的线性投影，用于计算注意力分数。注意力分数表示每个补丁序列对当前补丁的重要性或相关性，通过将query与keys的点积来计算。然后将softmax函数应用于注意力分数，将其转换为概率，确保注意力权重总和为1，并指示每个元素信号的相对重要性。在softmax操作之后，模型计算与所有补丁序列关联的值向量的加权平均值。这些权重由先前获得的softmax概率确定，确保认为与</p>
+<div class="text-block" id="block-TB0026" title="鼠标悬停查看原文">
   <p class="original">Self-attention (Figure 4B) is a crucial mechanism utilized in transformer encoders, enabling the model to focus on different parts of the input sequence when processing each element- (token). The self-attention mechanism generates three versions of the input embeddings: queries, keys, and values. These are linear projections of the original embeddings and are used to calculate attention scores. Attention scores, representing the importance or relevance of each patch sequence to the current patch, are computed by taking the dot product of a query with the keys. The softmax function is then applied to the attention scores to convert them into probabilities, ensuring that the attention weights sum up to 1 and indicating the relative importance of each element signal. Following the softmax operation, the model calculates a weighted average of the value vectors associated with all patch sequences. These weights are determined by the softmax probabilities obtained earlier, ensuring that patches deemed more pertinent to the</p>
+  <p class="translated">自注意力(图4B)是transformer编码器中使用的一种关键机制，使模型能够在处理每个元素（token）时专注于输入序列的不同部分。自注意力机制生成输入嵌入的三个版本：queries、keys和values。这些是原始嵌入的线性投影，用于计算注意力分数。注意力分数表示每个补丁序列对当前补丁的重要性或相关性，通过将query与keys的点积来计算。然后将softmax函数应用于注意力分数以将其转换为概率，从而确保注意力权重总和为1并指示每个元素信号的相对重要性。在softmax运算之后，模型计算与所有补丁序列关联的值向量的加权平均值。这些权重由先前获得的softmax概率确定，从而确保认为与</p>
 </div>
-<div class="text-block" id="block-TB0027">
-  <p class="translated" title="点击切换原文/译文">当前信号更相关的补丁对最终输出的贡献更大。生成的向量表示当前补丁的信号感知表示，考虑了其与序列中其他补丁信号的关系。通过将自注意力应用于光谱信号，transformer模型可以捕获输入序列中不同补丁之间的依赖关系，并学习关注每个位置最相关的补丁，这有助于理解信号并提高分类准确性。</p>
+<div class="text-block" id="block-TB0027" title="鼠标悬停查看原文">
   <p class="original">current signal contribute more significantly to the final output. The resulting vector represents a signal-aware representation of the current patch, considering its relationship with other patch signals in the sequence. By applying self-attention to the spectra signal, the transformer model can capture dependencies between different patches in the input sequence and learn to focus on the most relevant patches for each position, which aids in understanding the signal and improves classification accuracy.</p>
+  <p class="translated">当前信号更相关的补丁对最终输出的贡献更大。生成的向量表示当前补丁的信号感知表示，同时考虑其与序列中其他补丁信号的关系。通过将自注意力应用于光谱信号，transformer模型可以捕获输入序列中不同补丁之间的依赖关系，并学习专注于每个位置最相关的补丁，这有助于理解信号并提高分类准确性。</p>
 </div>
 <p>Q K V QK d 
 Attention( , , ) softmax V 
@@ -410,9 +452,9 @@ i k
 jjjjjj 
 y { 
 zzzzzz (2)</p>
-<div class="text-block" id="block-TB0029">
-  <p class="translated" title="点击切换原文/译文">为了有效地处理光谱信号数据，同时确保一致的输入大小并促进后续处理的token化，首先将每个信号调整为固定的信号长度1024。随后，将信号分成一系列固定大小的非重叠补丁。然后将这些补丁线性嵌入到token中，这些token用作Fcg-former模型的输入。与BERT和ViT架构一样，引入了一个额外的可学习token，称为[class] token，以充当整个输入信号的表示。该token用于捕获信号的全局信息和理解，这对于诸如分类之类的各种任务是有益的。它通常用作位于transformer编码器块输出端的分类头的输入。为每个token（包括额外的特殊token [class]）分配可学习的位置嵌入。这些位置嵌入在基于transformer的架构中起着至关重要的作用，该架构通过独特的正弦外推性对序列中每个token的位置信息进行编码，从而使模型能够理解token的相对位置。然而，由于</p>
+<div class="text-block" id="block-TB0029" title="鼠标悬停查看原文">
   <p class="original">To effectively process the spectral signal data while ensuring consistent input size and facilitating tokenization for subsequent processing, each signal is first resized to a fixed signal length of 1024. Subsequently, the signal is divided into a sequence of fixed-size non-overlapping patches. These patches are then linearly embedded into tokens, which serve as the input to the Fcg-former model. Like BERT and ViT architectures, an additional learnable token known as the [class] token is introduced to act as the representation of the entire input signal. This token is utilized to capture global information and understanding of the signal, which proves beneficial for various tasks such as classification. It typically serves as the input to the classification head located at the output of the transformer encoder block. Each token, including an additional special token [class], is assigned learnable position embeddings. These position embeddings play an essential role in transformer-based architecture, which encodes the positional information on each token within the sequence by a unique sinusoidal extrapolability, allowing the model to understand the relative positions of tokens. However, static (not trained) value does not always perform well, due to the</p>
+  <p class="translated">为了有效地处理光谱信号数据，同时确保一致的输入大小并促进后续处理的token化，首先将每个信号调整为固定的信号长度1024。随后，将信号分成一系列固定大小的非重叠补丁。然后将这些补丁线性嵌入到token中，这些token用作Fcg-former模型的输入。与BERT和ViT架构一样，引入了一个额外的可学习token，称为[class] token，以充当整个输入信号的表示。此token用于捕获信号的全局信息和理解，这对于分类等各种任务非常有用。它通常用作位于transformer编码器块输出端的分类头的输入。为每个token（包括额外的特殊token [class]）分配可学习的位置嵌入。这些位置嵌入在基于transformer的架构中起着至关重要的作用，该架构通过独特的正弦外推性对序列中每个token的位置信息进行编码，从而使模型能够理解token的相对位置。但是，由于</p>
 </div>
 <div class="image-container" id="figure-4-3">
   <div class="figure-number">Figure 4</div>
@@ -422,13 +464,13 @@ zzzzzz (2)</p>
 </div>
 <p>Figure 4. Transformer-based model: (A) Fcg-former architecture; (B) transformer encoder block with the self-attention mechanism; (C) classification head.</p>
 <h3 id="title-62"></h3>
-<div class="text-block" id="block-TB0031">
-  <p class="translated" title="点击切换原文/译文">缺乏可学习性和灵活性，大多数预训练语言模型利用可学习的（可训练参数）向量嵌入。随后，将向量序列（包括token嵌入及其相应的位置嵌入）输入到transformer编码器中。该编码器处理输入序列，利用自注意力机制来捕获补丁之间的依赖关系，并为序列中的每个token生成表示。分类头负责产生最终的分类输出，类token(*)在此过程中起着至关重要的作用（图4C）。此额外的可学习token被附加到输入序列，并且不对应于输入中光谱的任何特定补丁。transformer编码器的每一层都处理token，更新它们的表示。类token被初始化为固定大小且可学习的向量，该向量与模型的嵌入维度匹配。在通过transformer编码器的最后一层之后，类token保存着整个输入序列的全面表示。然后，分类头使用此表示来产生最终输出。使用Neural Network Intelligence进行超参数调整，旨在优化transformer架构中的参数，特别关注补丁大小、层数和注意力头数。此过程的目标是确定这些参数的最佳配置，从而提高给定任务或模型架构中的性能或效率。选择信号大小为1024、补丁大小为16、2层、嵌入维度为768和4个注意力头的性能最佳模型，以在独立的测试数据集上进行评估。</p>
+<div class="text-block" id="block-TB0031" title="鼠标悬停查看原文">
   <p class="original">lack of learnability and flexibility,56 most pretrained language models57 utilize learnable (trainable parameters) vector embedding. Subsequently, the sequence of vectors, comprising both the token embeddings and their corresponding position embeddings, is input into a transformer encoder. This encoder processes the input sequence, leveraging self-attention mechanisms to capture dependencies between patches and generate representations for each token in the sequence. A classification head is responsible for producing the final classification output, the class token (*) plays a crucial role in this process (Figure 4C). This additional learnable token is appended to the input sequence and does not correspond to any specific patch of spectrum in the input. Each layer of the transformer encoder processes the tokens, updating their representations. The class token is initialized as a fixed-size and learnable vector, which matches the embedding dimensions of the model. After passing through the final layer of the transformer encoder, the class token holds a comprehensive representation of the entire input sequence. This representation is then used by the classification head to produce the final output. Hyperparameter tuning was conducted using Neural Network Intelligence,58 aiming to optimize parameters within a transformer architecture, specifically focusing on patch size, layer count, and attention head count. This process goal was to identify the optimal configurations for these parameters that would lead to improved performance or efficiency in the given task or model architecture. The top-performing model, characterized by a signal size of 1024, patch size of 16, 2 layers, an embedded dimension of 768, and 4 attention heads, was chosen for evaluation on an independent test data set.</p>
+  <p class="translated">缺乏可学习性和灵活性56，大多数预训练语言模型57利用可学习的（可训练参数）向量嵌入。随后，将向量序列（包括token嵌入及其相应的位置嵌入）输入到transformer编码器中。该编码器处理输入序列，利用自注意力机制来捕获补丁之间的依赖关系，并为序列中的每个token生成表示。分类头负责生成最终的分类输出，类token(*)在此过程中起着至关重要的作用（图4C）。此额外的可学习token被附加到输入序列，并且不对应于输入中光谱的任何特定补丁。transformer编码器的每一层都处理token，更新它们的表示。类token被初始化为固定大小且可学习的向量，该向量与模型的嵌入维度匹配。通过transformer编码器的最后一层后，类token保存整个输入序列的全面表示。然后，分类头使用此表示来生成最终输出。使用Neural Network Intelligence58进行超参数调整，旨在优化transformer架构中的参数，特别关注补丁大小、层数和注意力头数。此过程的目标是确定这些参数的最佳配置，从而提高给定任务或模型架构中的性能或效率。选择信号大小为1024、补丁大小为16、2层、嵌入维度为768和4个注意力头的性能最佳模型，以在独立的测试数据集上进行评估。</p>
 </div>
-<div class="text-block" id="block-TB0032">
-  <p class="translated" title="点击切换原文/译文">训练方法：IRCNN 和 Fcg-former 在评估性能时使用了相同的训练参数，保证了二者在相似条件下训练，从而更准确地评估其相对有效性。学习率设为 0.002，采用 Adam optimizer algorithm59 和 cosine annealing warm restarts60 学习率调度器，迭代次数设为 600 epochs。为避免过拟合，如果模型在验证集上的损失在随后的 10 个 patience epochs 中没有改善，则训练代码配置为提前停止。此外，如果模型在每次迭代中构建的最佳权重达到最小验证损失，则保留这些权重。在多标签分类中，我们选择了 Sigmoid 函数，它可以将每个类的值转换为 0 到 1 的范围，定义为 (z) 1 1 e = z + ，这与多标签分类任务非常吻合。模型训练使用 weighted binary cross-entropy loss function (L) (eq 3)，该方法在 CNN 网络中处理红外光谱信号分类中的不平衡数据集时表现出优越的性能。27</p>
+<div class="text-block" id="block-TB0032" title="鼠标悬停查看原文">
   <p class="original">Training Methods. Both IRCNN and Fcg-former utilized the same training parameters during the evaluation of their performance. This consistency ensures a fair comparison between the two models, as they are trained under similar conditions, allowing for a more accurate assessment of their relative effectiveness in handling the given task or data set. The learning rate was set to 0.002, employing the Adam optimizer algorithm59 and a cosine annealing warm restarts60 learning rate scheduler, with the number of iterations set to 600 epochs. To mitigate overfitting, the training code was configured for early stopping if the model's loss on the validation set did not improve for the subsequent 10 patience epochs. Furthermore, the best weights of the model built at each iteration were retained if they achieved the minimum validation loss. Various activation functions are employed in neural networks, with the selection often influenced by the network's architecture and its predictive accuracy. In the context of multilabel classification, we opted for the Sigmoid function. This function is capable of transforming values into a range of 0 to 1 for each class, which could be defined as (z) 1 1 e = z + , which aligns well with the multilabel classification task. For training the model, we utilized the weighted binary cross-entropy loss function (L) (eq 3). This choice has shown superior performance in handling the imbalanced data set in infrared spectra signal classification when using CNN networks.27</p>
+  <p class="translated">训练方法。IRCNN 和 Fcg-former 在评估性能时使用了相同的训练参数。为公平比较，两模型在相似条件下训练，从而更准确地评估它们在处理给定任务或数据集时的相对有效性。学习率设为 0.002，采用 Adam optimizer algorithm59 和 cosine annealing warm restarts60 学习率调度器，迭代次数设为 600 epochs。为减轻过拟合，如果模型在验证集上的损失在随后的 10 个 patience epochs 中没有改善，则训练代码配置为提前停止。此外，如果模型在每次迭代中构建的最佳权重达到最小验证损失，则保留这些权重。在多标签分类中，我们选择了 Sigmoid 函数，其可以将值转换为 0 到 1 的范围，定义为 (z) 1 1 e = z + 。模型训练使用 weighted binary cross-entropy loss function (L) (eq 3)。</p>
 </div>
 <p>L N 
 Wy y y y 
@@ -439,17 +481,17 @@ N i i i i i 1
 , yi 
 , and 
 y i correspond to weight, the ground truth value, and the predicted value for class i.</p>
-<div class="text-block" id="block-TB0035">
-  <p class="translated" title="点击切换原文/译文">为解决光谱信号限制导致的潜在过拟合，仅对训练数据集应用了各种数据增强技术，包括在 2 到 20 dB (dB) 的信噪比 (SNR) 范围内添加随机噪声、以 0.3 的概率进行随机垂直移动以及以 0.3 的概率随机屏蔽信号部分。重要的是，这些增强过程均未扩展到验证和测试数据集，从而确保对模型在未见数据上的性能进行无偏评估，从而保持其泛化能力。</p>
+<div class="text-block" id="block-TB0035" title="鼠标悬停查看原文">
   <p class="original">To address potential overfitting caused by the limitations of spectral signals, various data augmentation techniques were exclusively applied to the training data set. These techniques encompassed the addition of random noise within a signal-tonoise ratio (SNR) range of 2 to 20 dB (dB), random vertical shifts with a 0.3 probability, and random masking of signal portions with zeros, also with a 0.3 probability. It is crucial to highlight that none of these augmentation processes were extended to the validation and testing data sets, ensuring an unbiased evaluation of the model's performance on unseen data, thereby preserving its generalization capability.</p>
+  <p class="translated">为解决光谱信号限制导致的潜在过拟合，仅对训练数据集应用了各种数据增强技术，包括在信噪比 (SNR) 范围为 2 到 20 dB (dB) 内添加随机噪声、以 0.3 的概率进行随机垂直移位，以及以 0.3 的概率对信号部分进行随机 masking。这些增强过程均未扩展到验证和测试数据集，确保对模型在未见数据上的性能进行无偏评估，从而保持其泛化能力。</p>
 </div>
-<div class="text-block" id="block-TB0036">
-  <p class="translated" title="点击切换原文/译文">在实施 DL 方法时，选择 PyTorch 作为框架。本研究采用的硬件平台包括一台配备八个运行频率为 4.0 GHz 的 Intel Core i7-12700F 处理器的的高性能计算机，以及一个具有 12 GB 显存的高速图形计算单元 NVIDIA GeForce RTX 2060。网络使用 Anaconda 环境中的 Python 3.9 进行配置，PyTorch 2.0 作为模型开发和训练的后端。此设置提供了必要的计算资源和软件环境，以有效地进行实验。</p>
+<div class="text-block" id="block-TB0036" title="鼠标悬停查看原文">
   <p class="original">In implementing DL approaches, PyTorch was the framework of choice. The hardware platform employed in this study consisted of a high-performance computer equipped with eight Intel Core i7-12700F processors running at 4.0 GHz, along with a high-speed graphics computing unit NVIDIA GeForce RTX 2060 with 12 GB of graphic memory. The networks were configured using Python 3.9 within an Anaconda environment, with PyTorch 2.0 serving as the backend for model development and training. This setup provided the necessary computational resources and software environment to conduct the experiments effectively.</p>
+  <p class="translated">在实施 DL 方法时，选择 PyTorch 作为框架。硬件平台包括配备八个运行频率为 4.0 GHz 的 Intel Core i7-12700F 处理器的计算机，以及具有 12 GB 显存的 NVIDIA GeForce RTX 2060 图形计算单元。网络使用 Anaconda 环境中的 Python 3.9 进行配置，PyTorch 2.0 作为模型开发和训练的后端。此设置提供了必要的计算资源和软件环境。</p>
 </div>
-<div class="text-block" id="block-TB0037">
-  <p class="translated" title="点击切换原文/译文">评估指标：采用各种指标来评估所提出的 DL 模型在官能团预测中的性能。准确率 (Accuracy) 是衡量模型正确性的综合指标，概述了其识别官能团的成功率。精确率 (Precision) 在假阳性代价高昂的情况下至关重要，可确保已识别官能团的准确性和可信度。召回率 (Recall) 反映了模型捕获每个官能团所有出现情况的有效性，从而确保全面覆盖并防止遗漏关键信息。F1-score 是分类任务中常用的指标，它同时考虑了精确率和召回率，从而提供了模型性能的平衡度量。在某些官能团比其他官能团更普遍的数据集中，类别不平衡会影响对传统准确性指标的解释。F1-score 基于精确率和召回率，对类别不平衡不太敏感，并且可以在这种情况下提供对模型性能的更可靠的评估。此外，精确匹配率 (EMR) 评估模型在识别分子内所有官能团方面的精确度，从而为性能评估提供了严格的标准。EMR 在需要精确识别官能团的应用中尤为重要，例如药物发现或材料科学。这些指标共同有助于全面评估模型在官能团预测中的有效性。这些指标（准确率、精确率、召回率、F1-score 和 EMR）的公式如下 eqs 4−8。</p>
+<div class="text-block" id="block-TB0037" title="鼠标悬停查看原文">
   <p class="original">Evaluation Metrics. Various metrics have been employed to assess the performance of the proposed DL models for functional group prediction. Accuracy serves as a comprehensive measure of the model's correctness, providing an overview of its success rate in identifying functional groups. Precision, particularly crucial in scenarios where false positives are costly, ensures the accuracy and trustworthiness of identified functional groups. In functional group prediction, recall reflects the model's effectiveness in capturing all occurrences of each functional group, thereby ensuring comprehensive coverage and preventing the oversight of critical information. The F1- score is a commonly used metric in classification tasks and it considers both precision and recall, providing a balanced measure of a model's performance. In data sets where certain functional groups are more prevalent than others, class imbalance can affect the interpretation of traditional accuracy metrics. The F1-score, being based on both precision and recall, is less sensitive to class imbalance and provides a more robust evaluation of model performance in such scenarios. Moreover, the exact match ratio (EMR) evaluates the model's precision in identifying all functional groups within a molecule, offering a strict criterion for performance assessment. EMR is particularly vital in applications necessitating precise identification of functional groups, such as drug discovery or material science. These metrics collectively contribute to the thorough evaluation of the model's efficacy in functional group prediction. The formulas of these metrics (accuracy, precision, recall, F1-score, and EMR) are as follows eqs 4−8.</p>
+  <p class="translated">评估指标。采用各种指标来评估所提出的 DL 模型在官能团预测中的性能。Accuracy 衡量模型的正确性。Precision 确保识别出的官能团的准确性。Recall 反映模型捕获每个官能团所有出现情况的有效性。F1-score 考虑了 precision 和 recall，提供模型性能的平衡度量。在某些官能团比其他官能团更普遍的数据集中，类别不平衡会影响传统 accuracy 指标的解释。EMR 评估模型在识别分子内所有官能团方面的 precision，提供严格的性能评估标准。这些指标共同有助于全面评估模型在官能团预测中的有效性。这些指标的公式（accuracy、precision、recall、F1-score 和 EMR）如下 eqs 4−8。</p>
 </div>
 <p>Accuracy 
 TP TN TP TN FP FN = + + + + 
@@ -470,21 +512,21 @@ n i i 1
 <p>where n is the number of testing signals, Yi and 
 Yi are true labels and predicted labels for spectral i.</p>
 <h3 id="title-80"> RESULTS AND DISCUSSIONS</h3>
-<div class="text-block" id="block-TB0045">
-  <p class="translated" title="点击切换原文/译文">训练结果：数据集被随机分为三个子集：训练集 (75%)、验证集 (15%) 和测试集 (10%)，从而可以严格研究所提出的 DL 模型的训练和评估。经过训练和超参数调整后，该模型经过了 600 个 epochs 的验证。传统的 IRCNN 模型与提出的 Fcg-former 模型并行训练和验证，从而可以在同一数据集的范围内进行直接比较。如图 5 所示，Fcg-former 模型的损失函数表现出可靠的降低，表明最佳收敛，而 IRCNN 模型在预定义的停止标准下提前停止训练。Fcgformer 和 IRCNN 的最佳 epochs 分别确定为 585 和 115。</p>
+<div class="text-block" id="block-TB0045" title="鼠标悬停查看原文">
   <p class="original">Training Results. The data set was randomly divided into three subsets: training (75%), validation (15%), and testing (10%), facilitating rigorous investigation into the training and evaluation of the proposed DL models. Following training and hyperparameter tuning, the model underwent validation over 600 epochs. A conventional IRCNN model was trained and validated in parallel with the proposed Fcg-former, enabling direct comparison within the confines of the same data set. As depicted in Figure 5, the loss function of the Fcg-former model exhibits a reliable reduction indicative of optimal convergence, whereas the IRCNN model stops training early under predefined stopping criteria. The optimal epochs for Fcgformer and IRCNN are identified at 585 and 115, respectively.</p>
+  <p class="translated">训练结果。数据集随机分为三个子集：训练 (75%)、验证 (15%) 和测试 (10%)，从而可以严格研究提出的 DL 模型的训练和评估。经过训练和超参数调整后，模型经过 600 epochs 的验证。传统的 IRCNN 模型与提出的 Fcg-former 并行训练和验证，从而可以在同一数据集的范围内进行直接比较。如图 5 所示，Fcg-former 模型的损失函数表现出可靠的降低，表明最佳收敛，而 IRCNN 模型在预定义的停止标准下提前停止训练。Fcgformer 和 IRCNN 的最佳 epochs 分别确定为 585 和 115。</p>
 </div>
-<div class="text-block" id="block-TB0046">
-  <p class="translated" title="点击切换原文/译文">官能团预测：图 6 显示了 ROC 曲线、PR 曲线和整体官能团混淆矩阵。基于混淆矩阵，计算了 IRCNN、Fcg-former、DTs 和 KNN 模型在测试子数据集上的预测结果</p>
+<div class="text-block" id="block-TB0046" title="鼠标悬停查看原文">
   <p class="original">Prediction of Functional Groups. The ROC curve, PR curve, and the overall functional group confusion matrix are presented in Figure 6. The predictive outcomes of both IRCNN, Fcg-former, DTs, and KNN models on the testing subdata set were calculated based on the confusion matrices</p>
+  <p class="translated">官能团预测。图 6 显示了 ROC 曲线、PR 曲线和整体官能团混淆矩阵。基于混淆矩阵计算了 IRCNN、Fcg-former、DTs 和 KNN 模型在测试子数据集上的预测结果</p>
 </div>
-<div class="text-block" id="block-TB0047">
-  <p class="translated" title="点击切换原文/译文">如表 2 所示，在准确率方面，两种模型均表现出高性能，其中 Fcg-former 略优于 IRCNN，准确率分别为 0.9715 和 0.9613。两种模型还表现出强大的精确率值，表明阳性预测的准确率很高（0.9355 对 0.9396）。但是，Fcg-former 模型的召回率更高（0.9227），与 IRCNN（0.8754）相比，捕获了数据集中更高比例的实际阳性实例。Fcg-former 模型改进的召回率表明其在捕获红外光谱中更广泛的官能团方面具有有效性，这可能是由于其注意力架构所致。F1-score 是精确率和召回率的调和平均值，进一步证实了 Fcg-former 的总体卓越性能，其得分为 0.929，而 IRCNN 的得分为 0.9063。此外，Fcgformer 的 EMR 高于 IRCNN 的 0.702，后者为 0.6249，表明其能够准确预测给定分子中的所有官能团（图 7）。</p>
+<div class="text-block" id="block-TB0047" title="鼠标悬停查看原文">
   <p class="original">and shown in Table 2. In terms of accuracy, both models demonstrate high performance, with Fcg-former slightly outperforming IRCNN by achieving an accuracy of 0.9715 compared to 0.9613. Both models also demonstrate strong precision values, indicating high accuracy in positive predictions (0.9355 versus 0.9396). However, the Fcg-former model exhibits better recall (0.9227), capturing a higher proportion of actual positive instances in the data set compared to IRCNN (0.8754). The Fcg-former model's improved recall suggests its effectiveness in capturing a broader range of functional groups within IR spectra, potentially due to its attention architecture. The F1-score, a harmonic mean of precision and recall, further confirms the overall superior performance of Fcg-former, with a score of 0.929 compared to 0.9063 for IRCNN. Additionally, Fcgformer demonstrates a higher EMR of 0.702 compared to 0.6249 for IRCNN, indicating its capability to accurately predict all functional groups within a given molecule (Figure 7).</p>
+  <p class="translated">如表 2 所示，在 accuracy 方面，两个模型都表现出高性能，Fcg-former 略优于 IRCNN，accuracy 分别为 0.9715 和 0.9613。两个模型还表现出很强的 precision 值，表明在阳性预测中具有很高的 accuracy（0.9355 对 0.9396）。但是，Fcg-former 模型表现出更好的 recall (0.9227)，与 IRCNN (0.8754) 相比，在数据集中捕获了更高比例的实际阳性实例。Fcg-former 模型的 recall 改进表明其在捕获红外光谱中更广泛的官能团方面的有效性，这可能是由于其注意力架构。F1-score 进一步证实了 Fcg-former 的总体优越性能，其得分为 0.929，而 IRCNN 的得分为 0.9063。此外，Fcgformer 的 EMR 高于 IRCNN，分别为 0.702 和 0.6249，表明其能够准确预测给定分子内的所有官能团（图 7）。</p>
 </div>
-<div class="text-block" id="block-TB0048">
-  <p class="translated" title="点击切换原文/译文">此外，在资源管理方面，尽管 Fcgformer 的可训练参数（6,210,065）比 IRCNN（61,540,416）少得多，但它仍然实现了可比的性能。此外，Fcg-former 需要的 GPU RAM 也少得多，估计为 142 MB，而 IRCNN 为 1409 MB，这使其更具内存效率。值得注意的是，虽然 IRCNN 对单个官能团采用最佳阈值调整，从而提高了准确性评估，但我们的研究对所有官能团采用统一阈值 (0.5)。这种方法突出了</p>
+<div class="text-block" id="block-TB0048" title="鼠标悬停查看原文">
   <p class="original">Furthermore, regarding resource management, despite Fcgformer having significantly fewer trainable parameters (6,210,065) compared to IRCNN (61,540,416), it still achieves comparable performance. Also, Fcg-former requires substantially less GPU RAM, with an estimate of 142 MB compared to 1409 MB for IRCNN, making it more memoryefficient. Notably, while IRCNN employs optimal threshold tuning for individual functional groups, resulting in enhanced accuracy evaluation, our study adopts a uniform threshold (0.5) for all functional groups. This approach highlights the</p>
+  <p class="translated">在资源管理方面，尽管 Fcgformer 的可训练参数 (6,210,065) 比 IRCNN (61,540,416) 少得多，但它仍然实现了相当的性能。此外，Fcg-former 需要的 GPU RAM 也少得多，估计为 142 MB，而 IRCNN 为 1409 MB，使其更节省内存。值得注意的是，虽然 IRCNN 对单个官能团采用最佳阈值调整，从而增强了 accuracy 评估，但我们的研究对所有官能团采用统一阈值 (0.5)。</p>
 </div>
 <div class="image-container" id="figure-4-4">
   <div class="figure-number">Figure 4</div>
@@ -499,13 +541,13 @@ Yi are true labels and predicted labels for spectral i.</p>
   <div class="image-info">图像位置: 第 6 页, 边界框: x0=94.64, y0=241.33, x1=514.57, y1=406.59</div>
 </div>
 <p>Figure 5. (A)Validation loss during training of IRCNN and Fcg-former; (B) learning rate scheduler.</p>
-<div class="text-block" id="block-TB0050">
-  <p class="translated" title="点击切换原文/译文">我们提出的 Fcg-former 注意力模型在官能团预测中的可靠性。图 S2 和 S3 显示了两种模型在单个官能团预测结果方面的混淆矩阵，揭示了它们整体性能的相似性，并证实了 Fcg-former 在红外光谱分析中预测官能团方面优于 IRCNN。</p>
+<div class="text-block" id="block-TB0050" title="鼠标悬停查看原文">
   <p class="original">reliability of our proposed Fcg-former attention model in functional group prediction. Figures S2 and S3 show the confusion matrix of individual functional group prediction results of both models, revealing similarities to their overall performance, and confirming the enhanced performance of Fcg-former over IRCNN in predicting functional groups within IR spectra analysis.</p>
+  <p class="translated">表明我们提出的 Fcg-former 注意力模型在官能团预测中的可靠性。图 S2 和 S3 显示了两个模型各个官能团预测结果的混淆矩阵，揭示了它们整体性能的相似性，并证实了 Fcg-former 在红外光谱分析中预测官能团方面优于 IRCNN 的增强性能。</p>
 </div>
-<div class="text-block" id="block-TB0051">
-  <p class="translated" title="点击切换原文/译文">传统的机器学习技术 DTs 和 KNN 在官能团预测的背景下也表现出性能特征。DTs 和 KNN 的官能团混淆矩阵如图 6E、F、S4 和 S5 所示，而它们的化合物级别混淆矩阵如图 7C 和 7D 所示。DTs 的准确率为 0.945，召回率为 0.8619，精确率为 0.8625，从而得出 F1-score 为 0.8622。虽然 DTs 在</p>
+<div class="text-block" id="block-TB0051" title="鼠标悬停查看原文">
   <p class="original">The conventional machine learning techniques DTs and KNN also exhibit performance characteristics in the context of functional group prediction. The functional group confusion matrices for DTs and KNN are depicted in Figures 6E,F, S4, and S5, while their compound-level confusion matrices are illustrated in Figures 7C and 7D. DTs achieve an accuracy of 0.945, a recall of 0.8619, and a precision of 0.8625, resulting in an F1-score of 0.8622. While DTs offer a balance between</p>
+  <p class="translated">传统的机器学习技术 DTs 和 KNN 在官能团预测方面也表现出性能特征。DTs 和 KNN 的官能团混淆矩阵如图 6E、F、S4 和 S5 所示，而它们的化合物级别混淆矩阵如图 7C 和 7D 所示。DTs 的 accuracy 为 0.945，recall 为 0.8619，precision 为 0.8625，F1-score 为 0.8622。</p>
 </div>
 <h3 id="title-92"></h3>
 <div class="image-container" id="figure-5-1">
@@ -514,9 +556,9 @@ Yi are true labels and predicted labels for spectral i.</p>
   <img src="figures/img_10.png" class="image-content" alt="Figure 5" data-figure="5" />
   <div class="image-info">图像位置: 第 7 页, 边界框: x0=91.36, y0=39.70, x1=529.60, y1=559.26</div>
 </div>
-<div class="text-block" id="block-TB0052">
-  <p class="translated" title="点击切换原文/译文">图 6. (A) IRCNN 模型和 (B) Fcg-former 的 ROC 和 PR 曲线；在测试数据集上执行的 (C) IRCNN 模型、(D) Fcg-former 模型、(E) DTs 模型和 (F) KNN 模型的官能团混淆矩阵。</p>
+<div class="text-block" id="block-TB0052" title="鼠标悬停查看原文">
   <p class="original">Figure 6. ROC and PR curve of (A) the IRCNN model and (B) the Fcg-former; the functional group confusion matrix of (C) the IRCNN model, (D) the Fcg-former model, (E) the DTs model, and (F) the KNN model performed on the test data set.</p>
+  <p class="translated">图 6. (A) IRCNN 模型和 (B) Fcg-former 的 ROC 和 PR 曲线；(C) IRCNN 模型、(D) Fcg-former 模型、(E) DTs 模型和 (F) KNN 模型在测试数据集上执行的官能团混淆矩阵。</p>
 </div>
 <h4 id="title-96">Table 1. Self-Attention Map Calculations</h4>
 <p>input: input spectrum output: self-attention map for each patch in sequence: for each attention head:</p>
@@ -536,21 +578,21 @@ Yi are true labels and predicted labels for spectral i.</p>
   <img src="figures/img_12.png" class="image-content" alt="Figure 7" data-figure="7" />
   <div class="image-info">图像位置: 第 8 页, 边界框: x0=62.92, y0=324.49, x1=275.86, y1=496.67</div>
 </div>
-<div class="text-block" id="block-TB0057">
-  <p class="translated" title="点击切换原文/译文">精确率和召回率之间取得了平衡，但它们的 EMR 相对较低，为 0.4941，表明在正确预测分子内的所有官能团方面具有中等有效性。另一方面，KNN 的准确率为 0.9296，召回率为 0.8698，精确率较低，为 0.7607，从而得出 F1-score 为 0.8116。KNN 模型的 EMR 甚至更低，为 0.3151，表明它在准确识别全套官能团方面更加困难。总体而言，DL 模型 IRCNN 和 Fcgformer 明显优于传统的机器学习方法 DTs 和 KNN，尤其是在 EMR 方面。这突出了 DL 技术在处理化合物级别预测方面的卓越能力，表明在捕获官能团识别的复杂性方面，DL 技术比传统的机器学习方法具有明显的优势。</p>
+<div class="text-block" id="block-TB0057" title="鼠标悬停查看原文">
   <p class="original">precision and recall, their EMR is relatively lower at 0.4941, indicating moderate effectiveness in predicting all functional groups within a molecule correctly. On the other hand, KNN shows an accuracy of 0.9296, with a recall of 0.8698 and a lower precision of 0.7607, leading to an F1-score of 0.8116. The KNN model has an even lower EMR of 0.3151, suggesting it struggles more with accurately identifying the full set of functional groups. Overall, the DL models, IRCNN and Fcgformer, significantly outperformed the classical machine learning approaches, DTs, and KNN, particularly regarding the EMR. This highlights the superior ability of DL techniques to handle compound-level predictions, demonstrating a clear advantage over traditional machine learning methods in capturing the complexity of functional group identification.</p>
+  <p class="translated">precision 和 recall 之间取得平衡，但它们的 EMR 相对较低，为 0.4941，表明在正确预测分子内的所有官能团方面具有中等有效性。另一方面，KNN 的 accuracy 为 0.9296，recall 为 0.8698，precision 较低，为 0.7607，F1-score 为 0.8116。KNN 模型的 EMR 甚至更低，为 0.3151，表明它在准确识别全套官能团方面更加困难。总体而言，DL 模型 IRCNN 和 Fcgformer 明显优于传统机器学习方法 DTs 和 KNN，尤其是在 EMR 方面。这突出了 DL 技术处理化合物级别预测的卓越能力，在捕获官能团识别的复杂性方面，与传统机器学习方法相比，DL 技术具有明显的优势。</p>
 </div>
-<div class="text-block" id="block-TB0058">
-  <p class="translated" title="点击切换原文/译文">我们的模型在初始测试数据集和外部数据集上的性能都证明了其稳健性。如图 S6、S7 和表 S1 所示，虽然在外部数据集上评估时性能指标略有下降，但 Fcg-former 模型始终表现出更好的性能，表明其稳定性和降低的</p>
+<div class="text-block" id="block-TB0058" title="鼠标悬停查看原文">
   <p class="original">The robustness of our models is evident in their performance on both the initial test data set and the external data set. As shown in Figures S6, S7, and Table S1, while there is a slight decrease in performance metrics when evaluated on the external data set, the Fcg-former model consistently shows better performance, indicating its stability and reduced</p>
+  <p class="translated">我们的模型的稳健性体现在它们在初始测试数据集和外部数据集上的性能。如图 S6、S7 和表 S1 所示，虽然在外部数据集上评估时，性能指标略有下降，但 Fcg-former 模型始终表现出更好的性能，表明其稳定性和降低的</p>
 </div>
-<div class="text-block" id="block-TB0059">
-  <p class="translated" title="点击切换原文/译文">与传统的机器学习模型相比，过拟合的可能性更小。在初始测试数据集上，Fcg-former 实现了最高的准确率 (0.9715) 和 EMR (0.702)，优于 IRCNN、DTs 和 KNN。在外部数据集上，Fcg-former 保持了其卓越的性能，准确率为 0.9585，EMR 为 0.6471，表明其能够很好地泛化到新数据。结果表明，DL 模型，尤其是 Fcg-former，表现出强大的泛化能力，而没有明显的过拟合，尤其是在处理复杂的化合物级别预测时。我们认为这些措施解决了对数据集独立性的担忧，并提供了对我们模型性能的全面评估。</p>
+<div class="text-block" id="block-TB0059" title="鼠标悬停查看原文">
   <p class="original">likelihood of overfitting compared to the classical machine learning models. On the initial test data set, the Fcg-former achieved the highest accuracy (0.9715) and EMR (0.702), outperforming IRCNN, DTs, and KNN. On the external data set, the Fcg-former maintained its superior performance with an accuracy of 0.9585 and an EMR of 0.6471, demonstrating its ability to generalize well to new data. The results indicate that the DL models, particularly Fcg-former, exhibit robust generalization capabilities without significant overfitting, especially in dealing with complex compound-level predictions. We believe these measures address the concern regarding data set independence and provide a comprehensive assessment of our models' performance.</p>
+  <p class="translated">与传统机器学习模型相比，过拟合的可能性。在初始测试数据集上，Fcg-former 实现了最高的 accuracy (0.9715) 和 EMR (0.702)，优于 IRCNN、DTs 和 KNN。在外部数据集上，Fcg-former 保持了其卓越的性能，accuracy 为 0.9585，EMR 为 0.6471，表明其能够很好地泛化到新数据。结果表明，DL 模型，尤其是 Fcg-former，表现出强大的泛化能力，而没有明显的过拟合，尤其是在处理复杂的化合物级别预测时。我们相信这些措施解决了对数据集独立性的担忧，并提供了对我们模型性能的全面评估。</p>
 </div>
-<div class="text-block" id="block-TB0060">
-  <p class="translated" title="点击切换原文/译文">官能团预测中的自注意力图：图 8 描述了在处理红外光谱及其相应输出期间生成的注意力图的示例。在计算过程中，通过将序列中的每个 patch 与所有其他 patch 进行比较来计算注意力分数。这是通过计算当前 patch 的 Query 和 Key 之间的点积来实现的</p>
+<div class="text-block" id="block-TB0060" title="鼠标悬停查看原文">
   <p class="original">Self-Attention Map in Functional Group Prediction. Figure 8 depicts an example of the attention map generated during the processing of IR spectra and its corresponding outputs. In the calculation process, attention scores are computed for each patch in a sequence by comparing it to all other patches. This is achieved by calculating the dot product between the Query of the current patch and the Key</p>
+  <p class="translated">官能团预测中的自注意力图。图 8 描述了在处理红外光谱及其相应输出期间生成的注意力图的示例。在计算过程中，通过将序列中的每个 patch 与所有其他 patch 进行比较来计算注意力分数。这是通过计算当前 patch 的 Query 与 Key 之间的点积来实现的</p>
 </div>
 <h4 id="title-109">
 Table 2. IRCNN, Fcg-Former, DTs, and KNN Performance Summary on Test Data</h4>
@@ -567,17 +609,17 @@ Table 2. IRCNN, Fcg-Former, DTs, and KNN Performance Summary on Test Data</h4>
   <div class="image-info">图像位置: 第 8 页, 边界框: x0=302.29, y0=144.70, x1=546.58, y1=313.15</div>
 </div>
 <p>Figure 7. Compound-level functional group confusion matrix of (A) the IRCNN model, (B) the Fcg-former model, (C) the DTs model, and (D) the KNN model performed on the test data set.</p>
-<div class="text-block" id="block-TB0062">
-  <p class="translated" title="点击切换原文/译文">每个其他 patch，然后进行 softmax 激活（如 eq 2 所示）。这些为每个 head 计算的注意力分数提供了对不同 patch 之间重要性的深入了解（表 1）。经过检查，注意力模型显示出对光谱中相关峰的显着关注。注意力模型准确地识别出与醇官能团相关的强吸收带，尤其是在 3600 cm−1 处。但是，对于烷烃和甲基等基团，它们的吸收带在 2800−3000 cm−1 范围内重叠，注意力转换器检测到的这些特征不太突出，反映了它们较弱的信号。此外，在 1700−1750 cm−1 处观察到的显着峰，揭示了酯伸缩振动和潜在的羧酸基团，受到了模型的高度关注。</p>
+<div class="text-block" id="block-TB0062" title="鼠标悬停查看原文">
   <p class="original">of every other patch, followed by a softmax activation (as depicted in eq 2). These attention scores, calculated for each head, provide insight into the significance of different patches with one another (Table 1). Upon examination, the attention model demonstrates a notable focus on relevant peaks within the spectra. The attention model accurately identifies the strong absorption bands associated with the alcohol functional group, particularly at 3600 cm−1 . However, for groups such as alkane and methyl, whose absorption bands overlap within the 2800−3000 cm−1 range, the attention transformer detects these features less prominently, reflecting their weaker signals. Moreover, the prominent peak observed at 1700−1750 cm−1 , revealing ester stretching vibrations and potentially carboxylic acid groups, receives significant attention from the model.</p>
+  <p class="translated">每个其他 patch，然后进行 softmax 激活（如 eq 2 所示）。这些为每个 head 计算的注意力分数提供了对不同 patch 之间重要性的深入了解（表 1）。经过检查，注意力模型显示出对光谱内相关峰的显着关注。注意力模型准确地识别出与醇官能团相关的强吸收带，尤其是在 3600 cm−1 处。然而，对于烷烃和甲基等基团，它们的吸收带在 2800−3000 cm−1 范围内重叠，注意力转换器检测这些特征不太突出，反映了它们较弱的信号。此外，在 1700−1750 cm−1 处观察到的显着峰，揭示了酯伸缩振动和潜在的羧酸基团，受到了模型的高度关注。</p>
 </div>
-<div class="text-block" id="block-TB0063">
-  <p class="translated" title="点击切换原文/译文">在训练阶段，注意力转换器算法学习并定义各种官能团之间的键合相互作用。这种获得的知识使模型能够预测未知分子中特定官能团的潜在存在。</p>
+<div class="text-block" id="block-TB0063" title="鼠标悬停查看原文">
   <p class="original">During the training phase, the attention transformer algorithm learns and defines the bonding interactions among various functional groups. This acquired knowledge allows the model to predict the potential presence of specific functional groups within the unknown molecules.</p>
+  <p class="translated">在训练阶段，注意力转换器算法学习并定义各种官能团之间的键合相互作用。这种获得的知识使模型能够预测未知分子中特定官能团的潜在存在。</p>
 </div>
-<div class="text-block" id="block-TB0064">
-  <p class="translated" title="点击切换原文/译文">Fcg-Former 的部署：Fcg-former 是一个开源库，致力于使化学信号研究的进展能够为更广泛的机器学习社区所用。它通过统一的 API 提供精心设计的 FcgFormer 架构。Fcg-former 强调研究人员的可扩展性、从业人员的简单性以及微调和部署等任务的效率和可靠性。</p>
+<div class="text-block" id="block-TB0064" title="鼠标悬停查看原文">
   <p class="original">Deployment of Fcg-Former. Fcg-former is an opensource library dedicated to making strides in chemical signal research accessible to the wider machine-learning community. It offers meticulously designed FcgFormer architectures through a unified API. Fcg-former emphasizes extensibility for researchers, simplicity for practitioners, and efficiency and reliability for tasks like fine-tuning and deployment.</p>
+  <p class="translated">Fcg-Former 的部署。Fcg-former 是一个开源库，致力于使化学信号研究的进展能够为更广泛的机器学习社区所用。它通过统一的 API 提供精心设计的 FcgFormer 架构。Fcg-former 强调研究人员的可扩展性、从业人员的简单性以及微调和部署等任务的效率和可靠性。</p>
 </div>
 <p>Additionally, users can access the library and its associated Hugging Face application, powered by Gradio, at https://</p>
 <div class="image-container" id="figure-8-1">
@@ -592,44 +634,44 @@ Table 2. IRCNN, Fcg-Former, DTs, and KNN Performance Summary on Test Data</h4>
   <img src="figures/img_16.png" class="image-content" alt="Figure 7" data-figure="7" />
   <div class="image-info">图像位置: 第 9 页, 边界框: x0=93.45, y0=354.65, x1=513.06, y1=570.11</div>
 </div>
-<div class="text-block" id="block-TB0066">
-  <p class="translated" title="点击切换原文/译文">图 8. 自注意力机制作用于富马酸单乙酯化合物。图中的每个单元格（patch 索引）都反映了注意力头如何在输入的不同部分分配注意力。此可视化有助于了解在模型处理过程中，哪些 patch 受到特定注意力头的更多关注。</p>
+<div class="text-block" id="block-TB0066" title="鼠标悬停查看原文">
   <p class="original">Figure 8. Self-Attention mechanism works on ethyl hydrogen fumarate compound. Each cell (patch index) in the figure reflects how attention heads distribute their attention across different parts of the input. This visualization helps understand which patches receive more focus from specific attention heads during the model's processing.</p>
+  <p class="translated">图 8. 自注意力机制作用于富马酸单乙酯化合物。图中的每个单元格（patch 索引）反映了注意力头如何在输入的不同部分分配注意力。这种可视化有助于理解在模型的处理过程中，哪些 patch 受到特定注意力头的更多关注。</p>
 </div>
 <p>Figure 9. Functional group prediction result performed on the web-based application.</p>
 <p>huggingface.co/spaces/lycaoduong/FcgFormerApp. The HuggingFace App prediction result is shown in Figure 9. Other examples of our model deployment were demonstrated in Figures S8−S11.</p>
 <h3 id="title-128"></h3>
 <h2 id="title-129"> CONCLUSION</h2>
-<div class="text-block" id="block-TB0069">
-  <p class="translated" title="点击切换原文/译文">总之，本研究提出了一种新颖的方法，利用 transformer 注意力模型来预测 FTIR 光谱中的官能团。我们的发现强调了探索光谱学中尖端 DL 技术的重要性，为旨在增强光谱分析和解释的未来研究途径铺平了道路。随着该领域的不断发展，将基于 transformer 的模型集成到分析工作流程中可能会导致化合物表征和识别方面的重大进步。我们的模型与传统的 CNN 架构相比表现出更好的性能，无论是在官能团预测准确率（0.9715 比 0.9613）还是化合物级别准确率（0.702 比 0.6249）方面。我们的 transformer 注意力模型的成功突出了自注意力机制在捕获复杂光谱模式和关系方面的有效性，从而能够实现更准确的预测。总的来说，这项工作有助于人工智能和光谱分析的持续融合，为 FTIR 光谱中准确高效的官能团预测提供了一个强大的框架。</p>
+<div class="text-block" id="block-TB0069" title="鼠标悬停查看原文">
   <p class="original">In conclusion, this study presents a novel approach utilizing a transformer attention model for the prediction of functional groups in FTIR spectra. Our findings underscore the importance of exploring cutting-edge DL techniques in spectroscopy, paving the way for future research avenues aimed at enhancing spectral analysis and interpretation. As the field continues to evolve, integrating transformer-based models into analytical workflows could lead to significant advancements in compound characterization and identification. Our model demonstrates better performance compared to conventional CNN architectures, both in terms of functional group prediction accuracy (0.9715 over 0.9613) and compound-level accuracy (0.702 over 0.6249). The success of our transformer attention model highlights the efficacy of self-attention mechanisms in capturing intricate spectral patterns and relationships, thus enabling more accurate predictions. Overall, this work contributes to the ongoing convergence of artificial intelligence and spectroscopic analysis, offering a robust framework for accurate and efficient functional group prediction in FTIR spectra.</p>
+  <p class="translated">总之，本研究提出了一种利用 transformer 注意力模型预测 FTIR 光谱中官能团的新方法。我们的发现强调了探索光谱学中尖端 DL 技术的重要性，为旨在增强光谱分析和解释的未来研究途径铺平了道路。随着该领域的不断发展，将基于 transformer 的模型集成到分析工作流程中可能会导致化合物表征和识别方面的重大进展。我们的模型与传统的 CNN 架构相比表现出更好的性能，无论是在官能团预测 accuracy (0.9715 比 0.9613) 还是化合物级别 accuracy (0.702 比 0.6249) 方面。我们的 transformer 注意力模型的成功突出了自注意力机制在捕获复杂光谱模式和关系方面的功效，从而能够实现更准确的预测。总的来说，这项工作有助于人工智能和光谱分析的持续融合，为 FTIR 光谱中准确高效的官能团预测提供了一个强大的框架。</p>
 </div>
 <h2 id="title-131"> ASSOCIATED CONTENT</h2>
 <h2 id="title-132">Data Availability Statement</h2>
-<div class="text-block" id="block-TB0070">
-  <p class="translated" title="点击切换原文/译文">本研究使用的数据集可从NIST Chemistry WebBook (https://webbook.nist.gov) 和 Emission Measurement Center Spectral Database (https://www3.epa. gov/ttn/emc/ftir/refnam.html) 获取。Fcg-former的Python代码实现、模型检查点和所有数据集均可在GitHub (https://github.com/ lycaoduong/FcgFormer) 上找到。</p>
+<div class="text-block" id="block-TB0070" title="鼠标悬停查看原文">
   <p class="original">The data sets used in this study are available from the NIST Chemistry WebBook https://webbook.nist.gov and Emission Measurement Center Spectral Database https://www3.epa. gov/ttn/emc/ftir/refnam.html. The Python code implementation of Fcg-former, model checkpoints, and all data sets used in this study are available on GitHub at https://github.com/ lycaoduong/FcgFormer.</p>
+  <p class="translated">本研究使用的数据集可从NIST Chemistry WebBook (https://webbook.nist.gov) 和 Emission Measurement Center Spectral Database (https://www3.epa. gov/ttn/emc/ftir/refnam.html) 获取。Fcg-former的Python代码实现、模型检查点和所有数据集均可在GitHub (https://github.com/ lycaoduong/FcgFormer) 上找到。</p>
 </div>
 <h2 id="title-134">*sı Supporting Information</h2>
 <p>The Supporting Information is available free of charge at https://pubs.acs.org/doi/10.1021/acs.analchem.4c01622.</p>
-<div class="text-block" id="block-TB0072">
-  <p class="translated" title="点击切换原文/译文">数据集关于每个分子内官能团数量的分布；IRCNN, Fcg-former, DTs, 和 KNN 在外部数据集上的性能总结；IRCNN, Fcg-former, DTs, 和 KNN 模型在测试数据集上表现的每个官能团的混淆矩阵；IRCNN, Fcg-former, DTs, 和 KNN 模型在外部数据集上表现的官能团和化合物级别的混淆矩阵；模型部署示例。更多细节请参考Supporting Information (PDF)。</p>
+<div class="text-block" id="block-TB0072" title="鼠标悬停查看原文">
   <p class="original">The data set distribution regarding the number of functional groups within each molecule. The IRCNN, Fcg-former, DTs, and KNN performance summary on the external data set. The confusion matrix of each functional group from IRCNN, Fcg-former, DTs, and KNN models performed on the test data set. The functional group and compound-level confusion matrix of IRCNN, Fcg-former, DTs, and KNN models performed on the external data set. Examples of model deployment. Please refer to Supporting Information for additional details (PDF)</p>
+  <p class="translated">数据集关于每个分子内官能团数量的分布；IRCNN、Fcg-former、DTs和KNN在外部数据集上的性能总结；IRCNN、Fcg-former、DTs和KNN模型在测试数据集上表现出的每个官能团的混淆矩阵；IRCNN、Fcg-former、DTs和KNN模型在外部数据集上表现出的官能团和化合物级别的混淆矩阵；模型部署示例。更多细节请参考Supporting Information (PDF)。</p>
 </div>
 <h2 id="title-137">■  AUTHOR INFORMATION</h2>
 <h4 id="title-138">Corresponding Authors</h4>
-<div class="text-block" id="block-TB0073">
-  <p class="translated" title="点击切换原文/译文">Byeongil Lee − Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea; Email: bilee@pknu.ac.kr Junghwan Oh − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea; Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering,</p>
+<div class="text-block" id="block-TB0073" title="鼠标悬停查看原文">
   <p class="original">Byeongil Lee − Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea; Email: bilee@pknu.ac.kr Junghwan Oh − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea; Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering,</p>
+  <p class="translated">Byeongil Lee − Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea; Email: bilee@pknu.ac.kr Junghwan Oh − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea; Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering,</p>
 </div>
-<div class="text-block" id="block-TB0074">
-  <p class="translated" title="点击切换原文/译文">Pukyong National University, Busan 48513, Republic of Korea; Ohlabs Corp., Busan 48513, Republic of Korea; orcid.org/0000-0002-5837-0958; Phone: +82-51-629- 5771; Email: jungoh@pknu.ac.kr; Fax: +82-51-629-5779</p>
+<div class="text-block" id="block-TB0074" title="鼠标悬停查看原文">
   <p class="original">Pukyong National University, Busan 48513, Republic of Korea; Ohlabs Corp., Busan 48513, Republic of Korea; orcid.org/0000-0002-5837-0958; Phone: +82-51-629- 5771; Email: jungoh@pknu.ac.kr; Fax: +82-51-629-5779</p>
+  <p class="translated">Pukyong National University, Busan 48513, Republic of Korea; Ohlabs Corp., Busan 48513, Republic of Korea; orcid.org/0000-0002-5837-0958; Phone: +82-51-629- 5771; Email: jungoh@pknu.ac.kr; Fax: +82-51-629-5779</p>
 </div>
 <h2 id="title-143">Authors</h2>
-<div class="text-block" id="block-TB0075">
-  <p class="translated" title="点击切换原文/译文">Vu Hoang Minh Doan − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea Cao Duong Ly − Research and Development Department, Senior AI Research Engineer, Vision-in Inc., Seoul 08505, Republic of Korea Sudip Mondal − Digital Healthcare Research Center, Pukyong National University, Busan 48513, Republic of Korea; orcid.org/0000-0002-0638-9657 Thi Thuy Truong − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Tan Dung Nguyen − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Jaeyeop Choi − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea</p>
+<div class="text-block" id="block-TB0075" title="鼠标悬停查看原文">
   <p class="original">Vu Hoang Minh Doan − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea Cao Duong Ly − Research and Development Department, Senior AI Research Engineer, Vision-in Inc., Seoul 08505, Republic of Korea Sudip Mondal − Digital Healthcare Research Center, Pukyong National University, Busan 48513, Republic of Korea; orcid.org/0000-0002-0638-9657 Thi Thuy Truong − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Tan Dung Nguyen − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Jaeyeop Choi − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea</p>
+  <p class="translated">Vu Hoang Minh Doan − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea Cao Duong Ly − Research and Development Department, Senior AI Research Engineer, Vision-in Inc., Seoul 08505, Republic of Korea Sudip Mondal − Digital Healthcare Research Center, Pukyong National University, Busan 48513, Republic of Korea; orcid.org/0000-0002-0638-9657 Thi Thuy Truong − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Tan Dung Nguyen − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Jaeyeop Choi − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea</p>
 </div>
 <p>Complete contact information is available at: https://pubs.acs.org/10.1021/acs.analchem.4c01622</p>
 <h3 id="title-146">Author Contributions </h3>
@@ -644,9 +686,9 @@ V.H.M.D., C.D.L. and S.M. contributed equally to this work.</p>
 <p>(2) Hong, S.; Shen, X.-J.; Xue, Z.; Sun, Z.; Yuan, T. Q. Green Chem. 2020, 22 (21), 7219−7232.</p>
 <p>(3) Naqvi, S. T. R.; Rasheed, T.; Hussain, D.; ul Haq, M. N.; Majeed, S.; Ahmed, N.; Nawaz, R. J. J. Mol. Liq. 2020, 297, 111919.</p>
 <p>(4) Rothfuss, N. E.; Petters, M. D. Environ. Sci. Technol. 2017, 51 (1), 271−279.</p>
-<div class="text-block" id="block-TB0084">
-  <p class="translated" title="点击切换原文/译文">(5) Pellenz, L.; de Oliveira, C. R. S.; da Silva Junior, ́ A. H.; da Silva, L. J. S.; da Silva, L.; de Souza, A. A. U.; de Souza, S. M. d. A. G. U.; Borba, F. H.; da Silva, A. Sep. Purif. Technol. 2023, 305, 122435.</p>
+<div class="text-block" id="block-TB0084" title="鼠标悬停查看原文">
   <p class="original">(5) Pellenz, L.; de Oliveira, C. R. S.; da Silva Junior, ́ A. H.; da Silva, L. J. S.; da Silva, L.; de Souza, A. A. U.; de Souza, S. M. d. A. G. U.; Borba, F. H.; da Silva, A. Sep. Purif. Technol. 2023, 305, 122435.</p>
+  <p class="translated">(5) Pellenz, L.; de Oliveira, C. R. S.; da Silva Junior, ́ A. H.; da Silva, L. J. S.; da Silva, L.; de Souza, A. A. U.; de Souza, S. M. d. A. G. U.; Borba, F. H.; da Silva, A. Sep. Purif. Technol. 2023, 305, 122435.</p>
 </div>
 <p>(6) Ertl, P.; Altmann, E.; McKenna, J. M. J. Med. Chem. 2020, 63 (15), 8408−8418.</p>
 <p>(7) Wang, Y.; Wu, C. Biomacromolecules 2018, 19 (6), 1804−1825.</p>
@@ -683,9 +725,9 @@ V.H.M.D., C.D.L. and S.M. contributed equally to this work.</p>
 <p>(40) Grossberg, S. Scholarpedia 2013, 8 (2), 1888.</p>
 <p>(41) Graves, A. Long short-term memory. In Studies in Computational Intelligence; Springer, 2012; pp 37−45..</p>
 <p>(42) Lin, S.; Runger, G. C. IEEE Transact. Neural Networks Learn. Syst. 2018, 29 (10), 4709−4718.</p>
-<div class="text-block" id="block-TB0119">
-  <p class="translated" title="点击切换原文/译文">(43) Cueva, C. J.; Wei, X.-X. Emergence of grid-like representations by training recurrent neural networks to perform spatial localization. In International Conference on Learning Representations (ICLR), 2018. (44) Agar, J. C.; Naul, B.; Pandya, S.; van Der Walt, S.; Maher, J.; Ren, Y.; Chen, L.-Q.; Kalinin, S. V.; Vasudevan, R. K.; Cao, Y.; et al. Nat. Commun. 2019, 10 (1), 4809.</p>
+<div class="text-block" id="block-TB0119" title="鼠标悬停查看原文">
   <p class="original">(43) Cueva, C. J.; Wei, X.-X. Emergence of grid-like representations by training recurrent neural networks to perform spatial localization. In International Conference on Learning Representations (ICLR), 2018. (44) Agar, J. C.; Naul, B.; Pandya, S.; van Der Walt, S.; Maher, J.; Ren, Y.; Chen, L.-Q.; Kalinin, S. V.; Vasudevan, R. K.; Cao, Y.; et al. Nat. Commun. 2019, 10 (1), 4809.</p>
+  <p class="translated">(43) Cueva, C. J.; Wei, X.-X. Emergence of grid-like representations by training recurrent neural networks to perform spatial localization. In International Conference on Learning Representations (ICLR), 2018. (44) Agar, J. C.; Naul, B.; Pandya, S.; van Der Walt, S.; Maher, J.; Ren, Y.; Chen, L.-Q.; Kalinin, S. V.; Vasudevan, R. K.; Cao, Y.; et al. Nat. Commun. 2019, 10 (1), 4809.</p>
 </div>
 <p>(45) Tang, W.; Long, G.; Liu, L.; Zhou, T.; Jiang, J.; Blumenstein, M. Rethinking 1d-cnn for time series classification: A stronger baseline. In The Tenth International Conference on Learning Representations (ICLR 2022), 2020, pp 1−7.</p>
 <p>(46) Yu, G.; Ma, B.; Chen, J.; Li, X.; Li, Y.; Li, C. J. Food Process. Eng. 2021, 44 (1), No. e13602.</p>
@@ -698,9 +740,9 @@ V.H.M.D., C.D.L. and S.M. contributed equally to this work.</p>
 <p>(53) Devlin, J.; Chang, M.-W.; Lee, K.; Toutanova, K. arXiv 2018, arXiv:1810.04805.</p>
 <p>(54) Liu, Y.; Ott, M.; Goyal, N.; Du, J.; Joshi, M.; Chen, D.; Levy, O.; Lewis, M.; Zettlemoyer, L.; Stoyanov, V. arXiv 2019, arXiv:1907.11692.</p>
 <p>(55) Dosovitskiy, A.; Beyer, L.; Kolesnikov, A.; Weissenborn, D.; Zhai, X.; Unterthiner, T.; Dehghani, M.; Minderer, M.; Heigold, G.; Gelly, S. arXiv 2020, arXiv:2010.11929.</p>
-<div class="text-block" id="block-TB0131">
-  <p class="translated" title="点击切换原文/译文">(56) Wang, G.; Lu, Y.; Cui, L.; Lv, T.; Florencio, D.; Zhang, C. A simple yet effective learnable positional encoding method for improving document transformer model Findings of the Association for Computational Linguistics: AACL-IJCNLP 2022, 2022, pp 453− 463.</p>
+<div class="text-block" id="block-TB0131" title="鼠标悬停查看原文">
   <p class="original">(56) Wang, G.; Lu, Y.; Cui, L.; Lv, T.; Florencio, D.; Zhang, C. A simple yet effective learnable positional encoding method for improving document transformer model Findings of the Association for Computational Linguistics: AACL-IJCNLP 2022, 2022, pp 453− 463.</p>
+  <p class="translated">(56) Wang, G.; Lu, Y.; Cui, L.; Lv, T.; Florencio, D.; Zhang, C. A simple yet effective learnable positional encoding method for improving document transformer model Findings of the Association for Computational Linguistics: AACL-IJCNLP 2022, 2022, pp 453− 463.</p>
 </div>
 <p>(57) Gehring, J.; Auli, M.; Grangier, D.; Yarats, D.; Dauphin, Y. N. Convolutional sequence to sequence learning. In International conference on machine learning; PMLR, 2017, pp 1243−1252.</p>
 <p>(58) Liu, X.; Wang, Y.; Ji, J.; Cheng, H.; Zhu, X.; Awa, E.; He, P.; Chen, W.; Poon, H.; Cao, G. arXiv 2020, arXiv:2002.07972.</p>
@@ -716,45 +758,18 @@ V.H.M.D., C.D.L. and S.M. contributed equally to this work.</p>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 切换单个段落
-    document.querySelectorAll('.text-block').forEach(block => {
-        const translated = block.querySelector('.translated');
-        const original = block.querySelector('.original');
-
-        if (translated && original) {
-            translated.addEventListener('click', function() {
-                if (original.style.display === 'block') {
-                    original.style.display = 'none';
-                    translated.style.display = 'block';
-                } else {
-                    original.style.display = 'block';
-                    translated.style.display = 'none';
-                }
-            });
-
-            original.addEventListener('click', function() {
-                original.style.display = 'none';
-                translated.style.display = 'block';
-            });
-        }
-    });
-
-    // 切换所有段落
+    // 切换所有段落的显示模式
     const toggleAllBtn = document.getElementById('toggleAllBtn');
     let showingOriginal = false;
+    const body = document.body;
 
     if (toggleAllBtn) {
         toggleAllBtn.addEventListener('click', function() {
-            const allTranslated = document.querySelectorAll('.translated');
-            const allOriginal = document.querySelectorAll('.original');
-
             if (showingOriginal) {
-                allOriginal.forEach(el => el.style.display = 'none');
-                allTranslated.forEach(el => el.style.display = 'block');
+                body.classList.remove('show-original');
                 toggleAllBtn.textContent = '显示所有原文';
             } else {
-                allOriginal.forEach(el => el.style.display = 'block');
-                allTranslated.forEach(el => el.style.display = 'none');
+                body.classList.add('show-original');
                 toggleAllBtn.textContent = '显示所有译文';
             }
 
@@ -779,7 +794,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function changeFontSize(step) {
-        const body = document.body;
         const currentSize = parseInt(window.getComputedStyle(body).fontSize);
         body.style.fontSize = (currentSize + step) + 'px';
     }

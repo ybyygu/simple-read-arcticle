@@ -404,10 +404,50 @@ def generate_html(original_json: Dict, translated_data: List[Dict], output_path:
     <style>
         body { font-family: 'Segoe UI', sans-serif; max-width: 850px; margin: 0 auto; padding: 20px; }
         p { line-height: 1.6; margin: 1em 0; }
-        .translated { color: #2c3e50; border-left: 3px solid #3498db; padding-left: 1em; }
-        .translated:hover { background-color: #f8f9fa; }
-        .original { display: none; color: #7f8c8d; border-left: 3px solid #e74c3c; padding-left: 1em; }
-        .original:hover { background-color: #f8f9fa; }
+        
+        /* 文本块样式 */
+        .text-block {
+            position: relative;
+            margin: 1em 0;
+        }
+        .translated, .original {
+            transition: opacity 0.2s ease;
+            padding-left: 1em;
+        }
+        .translated {
+            color: #2c3e50;
+            border-left: 3px solid #3498db;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 1;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .original {
+            color: #7f8c8d;
+            border-left: 3px solid #e74c3c;
+            opacity: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .text-block:hover .translated {
+            opacity: 0;
+        }
+        .text-block:hover .original {
+            opacity: 1;
+            background-color: #f8f9fa;
+        }
+        
+        /* 显示所有原文模式的样式 */
+        .show-original .translated {
+            opacity: 0;
+        }
+        .show-original .original {
+            opacity: 1;
+        }
+        
         .image-container {
             margin: 30px 0;
             text-align: center;
@@ -699,10 +739,10 @@ def generate_html(original_json: Dict, translated_data: List[Dict], output_path:
 
                 if block_id and translation_map[block_id]['translation']:
                     trans = translation_map[block_id]['translation']
-                    # 添加可切换的原文/译文段落
-                    html += f'<div class="text-block" id="block-{block_id}">\n'
-                    html += f'  <p class="translated" title="点击切换原文/译文">{trans}</p>\n'
+                    # 添加带原文固定区域的文本块，中文翻译叠加在上方
+                    html += f'<div class="text-block" id="block-{block_id}" title="鼠标悬停查看原文">\n'
                     html += f'  <p class="original">{text}</p>\n'
+                    html += f'  <p class="translated">{trans}</p>\n'
                     html += f'</div>\n'
                     translated_count += 1
                 else:
@@ -788,45 +828,18 @@ def generate_html(original_json: Dict, translated_data: List[Dict], output_path:
     html += """
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 切换单个段落
-    document.querySelectorAll('.text-block').forEach(block => {
-        const translated = block.querySelector('.translated');
-        const original = block.querySelector('.original');
-
-        if (translated && original) {
-            translated.addEventListener('click', function() {
-                if (original.style.display === 'block') {
-                    original.style.display = 'none';
-                    translated.style.display = 'block';
-                } else {
-                    original.style.display = 'block';
-                    translated.style.display = 'none';
-                }
-            });
-
-            original.addEventListener('click', function() {
-                original.style.display = 'none';
-                translated.style.display = 'block';
-            });
-        }
-    });
-
-    // 切换所有段落
+    // 切换所有段落的显示模式
     const toggleAllBtn = document.getElementById('toggleAllBtn');
     let showingOriginal = false;
+    const body = document.body;
 
     if (toggleAllBtn) {
         toggleAllBtn.addEventListener('click', function() {
-            const allTranslated = document.querySelectorAll('.translated');
-            const allOriginal = document.querySelectorAll('.original');
-
             if (showingOriginal) {
-                allOriginal.forEach(el => el.style.display = 'none');
-                allTranslated.forEach(el => el.style.display = 'block');
+                body.classList.remove('show-original');
                 toggleAllBtn.textContent = '显示所有原文';
             } else {
-                allOriginal.forEach(el => el.style.display = 'block');
-                allTranslated.forEach(el => el.style.display = 'none');
+                body.classList.add('show-original');
                 toggleAllBtn.textContent = '显示所有译文';
             }
 
@@ -851,7 +864,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function changeFontSize(step) {
-        const body = document.body;
         const currentSize = parseInt(window.getComputedStyle(body).fontSize);
         body.style.fontSize = (currentSize + step) + 'px';
     }
