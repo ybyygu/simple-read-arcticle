@@ -1,0 +1,93 @@
+#+TITLE: 悦读 PDF 文献
+#+AUTHOR: Wenping Guo
+#+DATE: <2025-03-18>
+#+OPTIONS: toc:nil
+
+* 项目简介
+该项目提供了一个Python脚本，用于将[[https://github.com/AmineDiro/ferrules][ferrules]]生成的JSON文档转换为快速阅读的HTML文件. 本脚本使用Gemini API对文档内容进行中文缩写。
+
+该工具特别适用于快速阅读学术论文、技术文档等英文资料，提供了良好的阅读体验和双语对照功能。
+
+* 主要功能
+- **智能翻译**：使用Google Gemini API将英文内容缩写为中文，自动保留公式、表格、图片等专业内容
+- **原文/译文切换**：可以方便地在原文和译文之间进行切换
+- **图像支持**：自动识别并显示文档中的图像，支持图像全屏查看
+- **大纲导航**：自动生成文档大纲，方便快速导航
+- **响应式设计**：支持字体大小调整，适应不同阅读需求
+- **批量处理**：支持设置批处理大小，优化API调用效率
+
+* 使用方法
+** 前提条件 **
+1. 安装[[https://github.com/AmineDiro/ferrules][ferrules]]工具
+2. 获取[Google Gemini API密钥](https://ai.google.dev/)
+3. 安装Python依赖：
+   #+BEGIN_SRC bash
+   pip install requests argparse
+   #+END_SRC
+
+** 步骤一：使用ferrules处理PDF文件 **
+#+BEGIN_SRC bash
+ferrules foo.pdf --save-images
+#+END_SRC
+该命令会在PDF文件所在目录生成 `*-results` 的新目录，并在其中创建JSON文件和figures目录。
+
+** 步骤二：设置环境变量 **
+在运行脚本之前，需要设置Gemini API密钥的环境变量：
+#+BEGIN_SRC bash
+export GEMINI_API_KEY="您的Gemini API密钥"
+#+END_SRC
+
+** 步骤三：运行翻译脚本 **
+进入ferrules生成的 `*-results` 目录，运行脚本：
+#+BEGIN_SRC bash
+cd foo-results
+python /path/to/simple-read-article.py results.json
+#+END_SRC
+
+* 命令行参数
+#+BEGIN_SRC
+用法: simple-read-article.py [-h] [-o OUTPUT] [-s] [-b BATCH_SIZE] input_json
+
+参数说明:
+  input_json            ferrules生成的JSON文件路径
+  -o, --output          输出的HTML文件路径 (默认为 'output.html')
+  -s, --skip-translation  跳过翻译步骤，直接生成HTML
+  -b, --batch-size      每批翻译的文本块数量 (默认为20)
+  -h, --help            显示帮助信息
+
+环境变量:
+  GEMINI_API_KEY - Gemini API密钥 (必需)
+  SKIP_TRANSLATION - 设置为'true'可跳过翻译步骤
+#+END_SRC
+
+* 翻译效果
+- **自动摘要**：对于长度≥200字符的英文文本，会自动翻译并压缩到原文的20%-40%左右
+- **智能保留**：自动保留难以翻译的部分，如公式、化学式、专业术语、文献引用等
+- **跳过翻译**：自动跳过文献(REFERENCES)部分和中文内容的翻译
+
+* 输出文件
+- `output.html` (默认)：生成的HTML文件，包含原文和翻译
+- `translated_blocks.json`：保存的翻译结果，可用于后续处理
+
+* 注意事项
+1. 确保figures目录与JSON文件在同一目录下，以便正确显示图像
+2. 翻译功能依赖于网络连接和Gemini API服务的可用性
+3. 对于大型文档，考虑增加批处理大小(-b参数)以提高效率
+4. 如需查看未翻译的版本，可使用 `-s` 参数跳过翻译步骤
+
+* 完整工作流示例
+#+BEGIN_SRC bash
+# 步骤1: 使用ferrules处理PDF
+ferrules path/to/paper.pdf --save-images
+
+# 步骤2: 进入生成的目录
+cd paper-results
+
+# 步骤3: 设置API密钥
+export GEMINI_API_KEY="您的Gemini API密钥"
+
+# 步骤4: 运行翻译脚本
+python /path/to/simple-read-article.py paper-results.json -o paper-translated.html
+#+END_SRC
+
+生成的HTML文件提供了交互式的阅读体验，可以方便地切换原文/译文，查看图像，以及按照大纲导航。

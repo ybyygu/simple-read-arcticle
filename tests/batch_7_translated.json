@@ -1,0 +1,77 @@
+[
+  {
+    "id": "TB0121",
+    "original": "(46) Yu, G.; Ma, B.; Chen, J.; Li, X.; Li, Y.; Li, C. J. Food Process. Eng. 2021, 44 (1), No. e13602.",
+    "translation": null
+  },
+  {
+    "id": "TB0122",
+    "original": "(47) Yoo, S.-H.; Huang, G.; Hong, K.-S. Bioengineering 2023, 10 (6), 685.",
+    "translation": null
+  },
+  {
+    "id": "TB0123",
+    "original": "(48) Stein, S.; Linstrom, P.; Mallard, W.; Gaithersburg, T. NIST Chemistry WebBook; NIST Standard Reference Database Number 69, 2005, p 20899..",
+    "translation": null
+  },
+  {
+    "id": "TB0124",
+    "original": "(49) Kim, S.; Thiessen, P. A.; Bolton, E. E.; Chen, J.; Fu, G.; Gindulyte, A.; Han, L.; He, J.; He, S.; Shoemaker, B. A.; et al. Nucleic Acids Res. 2016, 44 (D1), D1202−D1213.",
+    "translation": null
+  },
+  {
+    "id": "TB0125",
+    "original": "(50) Landrum, G. RDKit: Open-Source Cheminformatics, 2006.",
+    "translation": null
+  },
+  {
+    "id": "TB0126",
+    "original": "(51) Pala, A.; Oleynik, A.; Utseth, I.; Handegard, N. O. ICES J. Mar. Sci. 2023, 80 (10), 2530−2544.",
+    "translation": null
+  },
+  {
+    "id": "TB0127",
+    "original": "(52) Niu, Z.; Zhong, G.; Yu, H. Neurocomputing 2021, 452, 48−62.",
+    "translation": null
+  },
+  {
+    "id": "TB0128",
+    "original": "(53) Devlin, J.; Chang, M.-W.; Lee, K.; Toutanova, K. arXiv 2018, arXiv:1810.04805.",
+    "translation": null
+  },
+  {
+    "id": "TB0129",
+    "original": "(54) Liu, Y.; Ott, M.; Goyal, N.; Du, J.; Joshi, M.; Chen, D.; Levy, O.; Lewis, M.; Zettlemoyer, L.; Stoyanov, V. arXiv 2019, arXiv:1907.11692.",
+    "translation": null
+  },
+  {
+    "id": "TB0130",
+    "original": "(55) Dosovitskiy, A.; Beyer, L.; Kolesnikov, A.; Weissenborn, D.; Zhai, X.; Unterthiner, T.; Dehghani, M.; Minderer, M.; Heigold, G.; Gelly, S. arXiv 2020, arXiv:2010.11929.",
+    "translation": null
+  },
+  {
+    "id": "TB0131",
+    "original": "(56) Wang, G.; Lu, Y.; Cui, L.; Lv, T.; Florencio, D.; Zhang, C. A simple yet effective learnable positional encoding method for improving document transformer model Findings of the Association for Computational Linguistics: AACL-IJCNLP 2022, 2022, pp 453− 463.",
+    "translation": "(56) Wang, G. 等人提出了一种简单而有效的可学习位置编码方法，用于改进文档 Transformer 模型。Findings of the Association for Computational Linguistics: AACL-IJCNLP 2022, 2022, pp 453− 463."
+  },
+  {
+    "id": "TB0132",
+    "original": "(57) Gehring, J.; Auli, M.; Grangier, D.; Yarats, D.; Dauphin, Y. N. Convolutional sequence to sequence learning. In International conference on machine learning; PMLR, 2017, pp 1243−1252.",
+    "translation": null
+  },
+  {
+    "id": "TB0133",
+    "original": "(58) Liu, X.; Wang, Y.; Ji, J.; Cheng, H.; Zhu, X.; Awa, E.; He, P.; Chen, W.; Poon, H.; Cao, G. arXiv 2020, arXiv:2002.07972.",
+    "translation": null
+  },
+  {
+    "id": "TB0134",
+    "original": "(59) Kingma, D. P.; Ba, J. arXiv 2014, arXiv:1412.6980.",
+    "translation": null
+  },
+  {
+    "id": "TB0135",
+    "original": "(60) Loshchilov, I.; Hutter, F. arXiv 2016, arXiv:1608.03983.",
+    "translation": null
+  }
+]

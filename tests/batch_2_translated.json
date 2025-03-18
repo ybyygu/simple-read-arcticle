@@ -1,0 +1,102 @@
+[
+  {
+    "id": "TB0021",
+    "original": "where x1, y1 represent the coordinates of the left position, x2, y2 represent the coordinates of the right position, x is the interpolation point and y denotes the interpolated value.",
+    "translation": null
+  },
+  {
+    "id": "TB0022",
+    "original": "DL Model. Irchracterization Convolutional Neural Networks. The irchracterization convolutional neural networks",
+    "translation": null
+  },
+  {
+    "id": "TB0023",
+    "original": "(IRCNN)27 is a DL method proposed for identifying functional groups within organic molecules. Unlike other approaches that utilize artificial neural networks, IRCNN employs sliding convolutional filters with a shared-weight architecture across input features, resulting in translational equivariant responses referred to as feature maps. In this research, we chose to reimplement the IRCNN model, which offers a novel spectral interpretation approach. The IRCNN architecture is composed of two convolution blocks, one flattened layer, three dense layers, and one activation layer. We utilized PyTorch to carry out the reimplementation while maintaining all parameters consistent with the original paper, as detailed in both the paper itself and a provided GitHub link at https://github.com/gj475/irchracterizationcnn. Each convolution block consists of a dense convolution layer, batch normalization, ReLU activation, and a max-pooling layer. In the activation layer, unlike typical classification tasks, the spectra signal corresponds to multiple class labels. Consequently, the authors opted for sigmoid activation instead of softmax activation to accommodate these multilabel class labels. The IRCNN architecture is shown in Figure 3.",
+    "translation": "IRCNN27是一种用于识别有机分子中官能团的深度学习方法。与使用人工神经网络的其他方法不同，IRCNN采用滑动卷积滤波器，在输入特征上具有共享权重架构，从而产生平移等变响应，称为特征图。本研究选择重新实现IRCNN模型，该模型提供了一种新的光谱解释方法。IRCNN架构由两个卷积块、一个扁平层、三个密集层和一个激活层组成。使用PyTorch进行重新实现，同时保持所有参数与原始论文一致，详见论文本身和GitHub链接：https://github.com/gj475/irchracterizationcnn。每个卷积块包含一个密集卷积层、批归一化、ReLU激活和一个最大池化层。在激活层中，与典型的分类任务不同，光谱信号对应于多个类标签。因此，作者选择sigmoid激活而不是softmax激活来适应这些多标签类标签。IRCNN架构如图3所示。"
+  },
+  {
+    "id": "TB0024",
+    "original": "Transformer Architecture. We propose an approach that directly adapts the full transformer architecture,29 initially designed as a neural machine translation model. This model is particularly effective for handling sequential data through the aiding of attention mechanisms.52 The transformer network utilizes fundamental concepts of an encoder-decoder architecture, with each block incorporating simple word embeddings, attention mechanisms, and softmax. It avoids the structural complexities present in RNNs or CNNs. The encoder extracts features from an input sequence, while the decoder utilizes these features to generate an output sequence. In this study, our primary objective is spectra classification. Therefore, we opted to implement only the encoder part, which is designed to learn embeddings suitable for the efficient classification task. The encoder component in transformer architecture plays a vital role in comprehending and extracting relevant information from the input sequence. Over the years, numerous encoder-only architectures have been utilized, drawing inspiration from the encoder module of the original",
+    "translation": "Transformer架构。本文提出了一种直接采用完整transformer架构29的方法，该架构最初被设计为神经机器翻译模型。该模型通过注意力机制的辅助，特别适用于处理序列数据52。transformer网络利用编码器-解码器架构的基本概念，每个块都包含简单的词嵌入、注意力机制和softmax。它避免了RNN或CNN中存在的结构复杂性。编码器从输入序列中提取特征，而解码器利用这些特征生成输出序列。本研究的主要目标是光谱分类。因此，选择仅实现编码器部分，该部分旨在学习适合高效分类任务的嵌入。transformer架构中的编码器组件在理解和提取输入序列中的相关信息方面起着至关重要的作用。多年来，已经使用了许多仅编码器的架构，这些架构的灵感来自原始的编码器模块"
+  },
+  {
+    "id": "TB0025",
+    "original": "transformer model. Examples include BERT (bidirectional encoder representations from transformers),53 RoBERTa (a Robustly optimized BERT pretraining approach),54 and ViT (vision transformer).55 These architectures have been instrumental in advancing various classification domains. Despite the transformer architecture's emergence as state-ofthe-art (SOTA) for natural language processing and vision tasks, its application to chemical signals has remained limited. In this study, we introduced a transformer model (Fcg-former) (Figure 4A) inspired by the transformer encoder architecture and the ViT model. By adapting this architecture to process sequences of signal patches, our approach has shown outstanding performance on spectra classification tasks. Leveraging attention mechanisms, Fcg-former achieves remarkable results compared to SOTA convolutional networks trained on the same resources. The overall architecture of Fcgformer is shown in Figure 4.",
+    "translation": "transformer模型。例如BERT (bidirectional encoder representations from transformers)53, RoBERTa (a Robustly optimized BERT pretraining approach)54, 和ViT (vision transformer)55。这些架构在推进各种分类领域方面发挥了重要作用。尽管transformer架构已成为自然语言处理和视觉任务的最先进技术(SOTA)，但其在化学信号中的应用仍然有限。本研究介绍了一种受transformer编码器架构和ViT模型启发的transformer模型(Fcg-former)(图4A)。通过调整该架构以处理信号补丁序列，我们的方法在光谱分类任务中表现出色。利用注意力机制，与在相同资源上训练的SOTA卷积网络相比，Fcg-former取得了显著成果。Fcg-former的总体架构如图4所示。"
+  },
+  {
+    "id": "TB0026",
+    "original": "Self-attention (Figure 4B) is a crucial mechanism utilized in transformer encoders, enabling the model to focus on different parts of the input sequence when processing each element- (token). The self-attention mechanism generates three versions of the input embeddings: queries, keys, and values. These are linear projections of the original embeddings and are used to calculate attention scores. Attention scores, representing the importance or relevance of each patch sequence to the current patch, are computed by taking the dot product of a query with the keys. The softmax function is then applied to the attention scores to convert them into probabilities, ensuring that the attention weights sum up to 1 and indicating the relative importance of each element signal. Following the softmax operation, the model calculates a weighted average of the value vectors associated with all patch sequences. These weights are determined by the softmax probabilities obtained earlier, ensuring that patches deemed more pertinent to the",
+    "translation": "自注意力机制(图4B)是transformer编码器中使用的一种关键机制，使模型能够在处理每个元素(token)时关注输入序列的不同部分。自注意力机制生成输入嵌入的三个版本：queries, keys, 和 values。这些是原始嵌入的线性投影，用于计算注意力分数。注意力分数表示每个补丁序列对当前补丁的重要性或相关性，通过将query与keys的点积计算得出。然后将softmax函数应用于注意力分数，将其转换为概率，确保注意力权重之和为1，并指示每个元素信号的相对重要性。在softmax操作之后，模型计算与所有补丁序列关联的value向量的加权平均值。这些权重由先前获得的softmax概率确定，确保认为与"
+  },
+  {
+    "id": "TB0027",
+    "original": "current signal contribute more significantly to the final output. The resulting vector represents a signal-aware representation of the current patch, considering its relationship with other patch signals in the sequence. By applying self-attention to the spectra signal, the transformer model can capture dependencies between different patches in the input sequence and learn to focus on the most relevant patches for each position, which aids in understanding the signal and improves classification accuracy.",
+    "translation": "当前信号更相关的补丁对最终输出的贡献更大。生成的向量表示当前补丁的信号感知表示，考虑了其与序列中其他补丁信号的关系。通过将自注意力应用于光谱信号，transformer模型可以捕获输入序列中不同补丁之间的依赖关系，并学习关注每个位置最相关的补丁，这有助于理解信号并提高分类准确性。"
+  },
+  {
+    "id": "TB0028",
+    "original": "Q K V QK d \nAttention( , , ) softmax V \nT k \n= \ni k \njjjjjj \ny { \nzzzzzz (2)",
+    "translation": null
+  },
+  {
+    "id": "TB0029",
+    "original": "To effectively process the spectral signal data while ensuring consistent input size and facilitating tokenization for subsequent processing, each signal is first resized to a fixed signal length of 1024. Subsequently, the signal is divided into a sequence of fixed-size non-overlapping patches. These patches are then linearly embedded into tokens, which serve as the input to the Fcg-former model. Like BERT and ViT architectures, an additional learnable token known as the [class] token is introduced to act as the representation of the entire input signal. This token is utilized to capture global information and understanding of the signal, which proves beneficial for various tasks such as classification. It typically serves as the input to the classification head located at the output of the transformer encoder block. Each token, including an additional special token [class], is assigned learnable position embeddings. These position embeddings play an essential role in transformer-based architecture, which encodes the positional information on each token within the sequence by a unique sinusoidal extrapolability, allowing the model to understand the relative positions of tokens. However, static (not trained) value does not always perform well, due to the",
+    "translation": "为了有效地处理光谱信号数据，同时确保一致的输入大小并促进后续处理的token化，首先将每个信号调整为固定的信号长度1024。随后，将信号分成一系列固定大小的非重叠补丁。然后将这些补丁线性嵌入到token中，作为Fcg-former模型的输入。与BERT和ViT架构类似，引入了一个额外的可学习token，称为[class] token，作为整个输入信号的表示。该token用于捕获信号的全局信息和理解，这对于诸如分类之类的各种任务是有益的。它通常用作位于transformer编码器块输出端的分类头的输入。每个token，包括一个额外的特殊token [class]，都被分配可学习的位置嵌入。这些位置嵌入在基于transformer的架构中起着至关重要的作用，该架构通过独特的正弦外推性对序列中每个token的位置信息进行编码，使模型能够理解token的相对位置。然而，由于"
+  },
+  {
+    "id": "TB0030",
+    "original": "Figure 4. Transformer-based model: (A) Fcg-former architecture; (B) transformer encoder block with the self-attention mechanism; (C) classification head.",
+    "translation": null
+  },
+  {
+    "id": "TB0031",
+    "original": "lack of learnability and flexibility,56 most pretrained language models57 utilize learnable (trainable parameters) vector embedding. Subsequently, the sequence of vectors, comprising both the token embeddings and their corresponding position embeddings, is input into a transformer encoder. This encoder processes the input sequence, leveraging self-attention mechanisms to capture dependencies between patches and generate representations for each token in the sequence. A classification head is responsible for producing the final classification output, the class token (*) plays a crucial role in this process (Figure 4C). This additional learnable token is appended to the input sequence and does not correspond to any specific patch of spectrum in the input. Each layer of the transformer encoder processes the tokens, updating their representations. The class token is initialized as a fixed-size and learnable vector, which matches the embedding dimensions of the model. After passing through the final layer of the transformer encoder, the class token holds a comprehensive representation of the entire input sequence. This representation is then used by the classification head to produce the final output. Hyperparameter tuning was conducted using Neural Network Intelligence,58 aiming to optimize parameters within a transformer architecture, specifically focusing on patch size, layer count, and attention head count. This process goal was to identify the optimal configurations for these parameters that would lead to improved performance or efficiency in the given task or model architecture. The top-performing model, characterized by a signal size of 1024, patch size of 16, 2 layers, an embedded dimension of 768, and 4 attention heads, was chosen for evaluation on an independent test data set.",
+    "translation": "缺乏可学习性和灵活性56，大多数预训练语言模型57利用可学习的(可训练参数)向量嵌入。随后，将向量序列(包括token嵌入及其相应的位置嵌入)输入到transformer编码器中。该编码器处理输入序列，利用自注意力机制捕获补丁之间的依赖关系，并为序列中的每个token生成表示。分类头负责生成最终的分类输出，class token (*)在此过程中起着至关重要的作用(图4C)。这个额外的可学习token被附加到输入序列中，并且不对应于输入中的任何特定光谱补丁。transformer编码器的每一层都处理token，更新它们的表示。class token被初始化为固定大小且可学习的向量，该向量与模型的嵌入维度匹配。在通过transformer编码器的最后一层之后，class token保存整个输入序列的综合表示。然后，分类头使用此表示来生成最终输出。使用Neural Network Intelligence58进行超参数调整，旨在优化transformer架构中的参数，特别关注补丁大小、层数和注意力头数。此过程的目标是确定这些参数的最佳配置，从而提高给定任务或模型架构中的性能或效率。选择信号大小为1024、补丁大小为16、2层、嵌入维度为768和4个注意力头的性能最佳模型，以便在独立的测试数据集上进行评估。"
+  },
+  {
+    "id": "TB0032",
+    "original": "Training Methods. Both IRCNN and Fcg-former utilized the same training parameters during the evaluation of their performance. This consistency ensures a fair comparison between the two models, as they are trained under similar conditions, allowing for a more accurate assessment of their relative effectiveness in handling the given task or data set. The learning rate was set to 0.002, employing the Adam optimizer algorithm59 and a cosine annealing warm restarts60 learning rate scheduler, with the number of iterations set to 600 epochs. To mitigate overfitting, the training code was configured for early stopping if the model's loss on the validation set did not improve for the subsequent 10 patience epochs. Furthermore, the best weights of the model built at each iteration were retained if they achieved the minimum validation loss. Various activation functions are employed in neural networks, with the selection often influenced by the network's architecture and its predictive accuracy. In the context of multilabel classification, we opted for the Sigmoid function. This function is capable of transforming values into a range of 0 to 1 for each class, which could be defined as (z) 1 1 e = z + , which aligns well with the multilabel classification task. For training the model, we utilized the weighted binary cross-entropy loss function (L) (eq 3). This choice has shown superior performance in handling the imbalanced data set in infrared spectra signal classification when using CNN networks.27",
+    "translation": "训练方法。IRCNN和Fcg-former在评估其性能期间都使用了相同的训练参数。这种一致性确保了两个模型之间的公平比较，因为它们是在相似的条件下训练的，从而可以更准确地评估它们在处理给定任务或数据集方面的相对有效性。学习率设置为0.002，采用Adam优化器算法59和余弦退火warm restarts60学习率调度器，迭代次数设置为600个epoch。为了减轻过拟合，如果模型在验证集上的损失在随后的10个patience epochs中没有改善，则将训练代码配置为提前停止。此外，如果模型在每次迭代中构建的最佳权重达到了最小验证损失，则保留这些权重。神经网络中使用了各种激活函数，选择通常受网络架构及其预测准确性的影响。在多标签分类的上下文中，我们选择了Sigmoid函数。此函数能够将每个类的值转换为0到1的范围，可以定义为(z) 1 1 e = z + ，这与多标签分类任务非常吻合。对于训练模型，我们使用了加权二元交叉熵损失函数(L)(eq 3)。当使用CNN网络时，这种选择在处理红外光谱信号分类中的不平衡数据集时表现出卓越的性能27。"
+  },
+  {
+    "id": "TB0033",
+    "original": "L N \nWy y y y \n1 log( ) (1 )log(1 ) i \nN i i i i i 1 \n=  + =  (3)",
+    "translation": null
+  },
+  {
+    "id": "TB0034",
+    "original": "where N is the number of classes, Wi \n, yi \n, and \ny i correspond to weight, the ground truth value, and the predicted value for class i.",
+    "translation": null
+  },
+  {
+    "id": "TB0035",
+    "original": "To address potential overfitting caused by the limitations of spectral signals, various data augmentation techniques were exclusively applied to the training data set. These techniques encompassed the addition of random noise within a signal-to-noise ratio (SNR) range of 2 to 20 dB (dB), random vertical shifts with a 0.3 probability, and random masking of signal portions with zeros, also with a 0.3 probability. It is crucial to highlight that none of these augmentation processes were extended to the validation and testing data sets, ensuring an unbiased evaluation of the model's performance on unseen data, thereby preserving its generalization capability.",
+    "translation": "为了解决光谱信号的局限性可能导致的过拟合，各种数据增强技术专门应用于训练数据集。这些技术包括在2到20 dB (dB)的信噪比(SNR)范围内添加随机噪声，以0.3的概率进行随机垂直移位，以及以0.3的概率对信号部分进行随机屏蔽为零。至关重要的是要强调，这些增强过程均未扩展到验证和测试数据集，从而确保对模型在未见数据上的性能进行无偏评估，从而保留其泛化能力。"
+  },
+  {
+    "id": "TB0036",
+    "original": "In implementing DL approaches, PyTorch was the framework of choice. The hardware platform employed in this study consisted of a high-performance computer equipped with eight Intel Core i7-12700F processors running at 4.0 GHz, along with a high-speed graphics computing unit NVIDIA GeForce RTX 2060 with 12 GB of graphic memory. The networks were configured using Python 3.9 within an Anaconda environment, with PyTorch 2.0 serving as the backend for model development and training. This setup provided the necessary computational resources and software environment to conduct the experiments effectively.",
+    "translation": "在实施深度学习方法时，PyTorch是首选框架。本研究中使用的硬件平台包括一台配备八个以4.0 GHz运行的Intel Core i7-12700F处理器的的高性能计算机，以及一个具有12 GB图形内存的高速图形计算单元NVIDIA GeForce RTX 2060。这些网络使用Anaconda环境中的Python 3.9进行配置，PyTorch 2.0作为模型开发和训练的后端。此设置提供了必要的计算资源和软件环境，以有效地进行实验。"
+  },
+  {
+    "id": "TB0037",
+    "original": "Evaluation Metrics. Various metrics have been employed to assess the performance of the proposed DL models for functional group prediction. Accuracy serves as a comprehensive measure of the model's correctness, providing an overview of its success rate in identifying functional groups. Precision, particularly crucial in scenarios where false positives are costly, ensures the accuracy and trustworthiness of identified functional groups. In functional group prediction, recall reflects the model's effectiveness in capturing all occurrences of each functional group, thereby ensuring comprehensive coverage and preventing the oversight of critical information. The F1- score is a commonly used metric in classification tasks and it considers both precision and recall, providing a balanced measure of a model's performance. In data sets where certain functional groups are more prevalent than others, class imbalance can affect the interpretation of traditional accuracy metrics. The F1-score, being based on both precision and recall, is less sensitive to class imbalance and provides a more robust evaluation of model performance in such scenarios. Moreover, the exact match ratio (EMR) evaluates the model's precision in identifying all functional groups within a molecule, offering a strict criterion for performance assessment. EMR is particularly vital in applications necessitating precise identification of functional groups, such as drug discovery or material science. These metrics collectively contribute to the thorough evaluation of the model's efficacy in functional group prediction. The formulas of these metrics (accuracy, precision, recall, F1-score, and EMR) are as follows eqs 4−8.",
+    "translation": "评估指标。已采用各种指标来评估所提出的用于官能团预测的深度学习模型的性能。准确率是衡量模型正确性的综合指标，提供了模型在识别官能团方面的成功率的概述。精确率在假阳性代价高昂的情况下尤为重要，可确保已识别官能团的准确性和可信赖性。在官能团预测中，召回率反映了模型捕获每个官能团所有出现情况的有效性，从而确保全面覆盖并防止忽略关键信息。F1-score是分类任务中常用的指标，它同时考虑了精确率和召回率，从而提供了模型性能的平衡度量。在某些官能团比其他官能团更普遍的数据集中，类别不平衡会影响对传统准确率指标的解释。F1-score基于精确率和召回率，对类别不平衡不太敏感，并且在此类情况下提供了对模型性能的更可靠的评估。此外，精确匹配率(EMR)评估模型在识别分子内所有官能团方面的精确度，从而为性能评估提供了严格的标准。EMR在需要精确识别官能团的应用中尤为重要，例如药物发现或材料科学。这些指标共同有助于全面评估模型在官能团预测中的有效性。这些指标(准确率、精确率、召回率、F1-score和EMR)的公式如下：eqs 4−8。"
+  },
+  {
+    "id": "TB0038",
+    "original": "Accuracy \nTP TN TP TN FP FN = + + + + \n(4)",
+    "translation": null
+  },
+  {
+    "id": "TB0039",
+    "original": "Precision TP TP FP = + \n(5)",
+    "translation": null
+  },
+  {
+    "id": "TB0040",
+    "original": "Recall TP TP FN = + \n(6)",
+    "translation": null
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "TB0101",
+    "original": "(23) Chen, Y. Y.; Wang, Z. B. J. Chemom. 2019, 33 (5), No. e3122. (24) McCarthy, M.; Lee, K. L. K. J. Phys. Chem. A 2020, 124 (15), 3002−3017.",
+    "translation": null
+  },
+  {
+    "id": "TB0102",
+    "original": "(25) Enders, A. A.; North, N. M.; Fensore, C. M.; Velez-Alvarez, J.; Allen, H. C. Anal. Chem. 2021, 93 (28), 9711−9718.",
+    "translation": null
+  },
+  {
+    "id": "TB0103",
+    "original": "(26) Awotunde, O.; Roseboom, N.; Cai, J.; Hayes, K.; Rajane, R.; Chen, R.; Yusuf, A.; Lieberman, M. Anal. Chem. 2022, 94 (37), 12586−12594.",
+    "translation": null
+  },
+  {
+    "id": "TB0104",
+    "original": "(27) Jung, G.; Jung, S. G.; Cole, J. M. Chem. Sci. 2023, 14 (13), 3600−3609.",
+    "translation": null
+  },
+  {
+    "id": "TB0105",
+    "original": "(28) Lin, T.; Wang, Y.; Liu, X.; Qiu, X. AI Open 2022, 3, 111−132. (29) Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A. N.; Kaiser, Ł.; Polosukhin, I. arXiv 2017, arXiv:1706.03762.",
+    "translation": null
+  },
+  {
+    "id": "TB0106",
+    "original": "(30) Ott, M.; Edunov, S.; Baevski, A.; Fan, A.; Gross, S.; Ng, N.; Grangier, D.; Auli, M. arXiv 2019, arXiv:1904.01038.",
+    "translation": null
+  },
+  {
+    "id": "TB0107",
+    "original": "(31) Wang, Q.; Li, B.; Xiao, T.; Zhu, J.; Li, C.; Wong, D. F.; Chao, L. S. arXiv 2019, arXiv:1906.01787.",
+    "translation": null
+  },
+  {
+    "id": "TB0108",
+    "original": "(32) Li, S.; Jin, X.; Xuan, Y.; Zhou, X.; Chen, W.; Wang, Y.-X.; Yan, X. arXiv 2019, arXiv:1907.00235.",
+    "translation": null
+  },
+  {
+    "id": "TB0109",
+    "original": "(33) Wu, N.; Green, B.; Ben, X.; O'Banion, S. arXiv 2020, arXiv:2001.08317.",
+    "translation": null
+  },
+  {
+    "id": "TB0110",
+    "original": "(34) Zhou, H.; Zhang, S.; Peng, J.; Zhang, S.; Li, J.; Xiong, H.; Zhang, W. Informer: Beyond efficient transformer for long sequence time-series forecasting. In Proceedings of the AAAI conference on artificial intelligence, 2021, pp 11106−11115..",
+    "translation": null
+  },
+  {
+    "id": "TB0111",
+    "original": "(35) Jin, C.-c.; Chen, X. Expert Syst. Appl. 2021, 171, 114570.",
+    "translation": null
+  },
+  {
+    "id": "TB0112",
+    "original": "(36) Che, C.; Zhang, P.; Zhu, M.; Qu, Y.; Jin, B. BMC Med. Inf. Decis. Making 2021, 21 (1), 184.",
+    "translation": null
+  },
+  {
+    "id": "TB0113",
+    "original": "(37) Sun, J.; Xie, J.; Zhou, H. EEG classification with transformerbased models. In 2021 IEEE 3rd Global Conference On Life Sciences And Technologies (Lifetech); IEEE, 2021, pp 92−93.",
+    "translation": null
+  },
+  {
+    "id": "TB0114",
+    "original": "(38) Cai, J.; Gan, F.; Cao, X.; Liu, W. IEEE Trans. Cogn. Commun. Netw. 2022, 8 (3), 1348−1357.",
+    "translation": null
+  },
+  {
+    "id": "TB0115",
+    "original": "(39) Xue, R.; Bai, X.; Cao, X.; Zhou, F. IEEE Trans. Geosci. Rem. Sens. 2022, 60, 5111411.",
+    "translation": null
+  },
+  {
+    "id": "TB0116",
+    "original": "(40) Grossberg, S. Scholarpedia 2013, 8 (2), 1888.",
+    "translation": null
+  },
+  {
+    "id": "TB0117",
+    "original": "(41) Graves, A. Long short-term memory. In Studies in Computational Intelligence; Springer, 2012; pp 37−45..",
+    "translation": null
+  },
+  {
+    "id": "TB0118",
+    "original": "(42) Lin, S.; Runger, G. C. IEEE Transact. Neural Networks Learn. Syst. 2018, 29 (10), 4709−4718.",
+    "translation": null
+  },
+  {
+    "id": "TB0119",
+    "original": "(43) Cueva, C. J.; Wei, X.-X. Emergence of grid-like representations by training recurrent neural networks to perform spatial localization. In International Conference on Learning Representations (ICLR), 2018. (44) Agar, J. C.; Naul, B.; Pandya, S.; van Der Walt, S.; Maher, J.; Ren, Y.; Chen, L.-Q.; Kalinin, S. V.; Vasudevan, R. K.; Cao, Y.; et al. Nat. Commun. 2019, 10 (1), 4809.",
+    "translation": "(43) Cueva, C. J.; Wei, X.-X. 通过训练循环神经网络执行空间定位，涌现网格状表示。In International Conference on Learning Representations (ICLR), 2018. (44) Agar, J. C.; Naul, B.; Pandya, S.; van Der Walt, S.; Maher, J.; Ren, Y.; Chen, L.-Q.; Kalinin, S. V.; Vasudevan, R. K.; Cao, Y.; et al. Nat. Commun. 2019, 10 (1), 4809."
+  },
+  {
+    "id": "TB0120",
+    "original": "(45) Tang, W.; Long, G.; Liu, L.; Zhou, T.; Jiang, J.; Blumenstein, M. Rethinking 1d-cnn for time series classification: A stronger baseline. In The Tenth International Conference on Learning Representations (ICLR 2022), 2020, pp 1−7.",
+    "translation": null
+  }
+]

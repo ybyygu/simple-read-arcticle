@@ -1,0 +1,102 @@
+[
+  {
+    "id": "TB0001",
+    "original": "Vu Hoang Minh Doan,# Cao Duong Ly,# Sudip Mondal,# Thi Thuy Truong, Tan Dung Nguyen, Jaeyeop Choi, Byeongil Lee,* and Junghwan Oh*",
+    "translation": null
+  },
+  {
+    "id": "TB0002",
+    "original": "ABSTRACT: Deep learning (DL) is becoming more popular as a useful tool in various scientific domains, especially in chemistry applications. In the infrared spectroscopy field, where identifying functional groups in unknown compounds poses a significant challenge, there is a growing need for innovative approaches to streamline and enhance analysis processes. This study introduces a transformative approach leveraging a DL methodology based on transformer attention models. With a data set containing approximately 8677 spectra, our model utilizes self-attention mechanisms to capture complex spectral features and precisely predict 17 functional groups, outperforming conventional architectures in both functional group prediction accuracy and compound-level precision. The success of our approach underscores the potential of transformer-based methodologies in enhancing spectral analysis techniques.",
+    "translation": "摘要：深度学习 (DL) 在各科学领域，尤其是在化学应用中，作为一种有效工具正变得越来越受欢迎。红外光谱领域中，未知化合物中官能团的识别面临巨大挑战，因此迫切需要创新方法来简化和加强分析过程。本研究引入了一种变革性方法，利用基于transformer attention models的DL方法。该模型利用包含约8677个光谱的数据集，采用自注意力机制来捕获复杂的光谱特征，并精确预测17个官能团，在官能团预测准确性和化合物水平精度方面均优于传统架构。该方法的成功突显了基于transformer的方法在增强光谱分析技术方面的潜力。"
+  },
+  {
+    "id": "TB0003",
+    "original": "Functional groups serve to identify the physical properties including boiling point,1 melting point,2 solubility,3 and viscosity4 of chemical compounds. By recognizing functional groups, researchers can classify and categorize compounds, aiding in their characterization and identification.5 In the field of medicinal chemistry, functional groups play a critical role in determining a compound's biological activity and pharmacological properties.6 Specific functional groups might impart desirable therapeutic effects or influence the compound's interaction with biological targets.7 Understanding these relationships is essential for drug design and optimization. In polymer chemistry, by controlling the types and distribution of functional groups, researchers can tailor their mechanical, thermal, and chemical properties for specific applications, such as in materials science, engineering, and biomedicine.8−10 Knowledge of functional groups is thus essential for understanding and predicting the behavior of substances in various environments.",
+    "translation": "官能团用于识别化学化合物的物理性质，包括沸点,1 熔点,2 溶解度,3 和粘度4。通过识别官能团，研究人员可以对化合物进行分类，从而有助于其表征和鉴定。5 在药物化学领域，官能团在确定化合物的生物活性和药理学性质方面起着关键作用。6 特定官能团可能赋予理想的治疗效果或影响化合物与生物靶标的相互作用。7 了解这些关系对于药物设计和优化至关重要。在聚合物化学中，通过控制官能团的类型和分布，研究人员可以定制其机械、热和化学性质，以用于特定应用，例如材料科学、工程和生物医学。8−10 因此，了解官能团对于理解和预测物质在各种环境中的行为至关重要。"
+  },
+  {
+    "id": "TB0004",
+    "original": "Functional groups are specific arrangements of atoms within a molecule that give the compound its unique chemical",
+    "translation": null
+  },
+  {
+    "id": "TB0005",
+    "original": "characteristics.11 Infrared (IR) spectroscopy is a widely used qualitative and quantitative analytical method utilized for the identification and characterization of chemical compounds, relying on their molecular vibrations.12 When a sample is exposed to infrared radiation, certain wavelengths are selectively absorbed by its chemical bonds, causing transitions between quantized vibrational energy levels.13 Even at the lowest energy state, known as the zero point energy, molecular bonds possess intrinsic vibrational energy.14 The absorption of infrared radiation provides the exact amount of energy required to elevate the molecule from a lower vibrational state to a higher one.15 Each type of chemical bond has a characteristic vibrational frequency associated with it, corresponding to the energy difference between these quantized",
+    "translation": "特性。11 红外 (IR) 光谱是一种广泛使用的定性和定量分析方法，用于识别和表征化学化合物，依赖于其分子振动。12 当样品暴露于红外辐射时，某些波长会被其化学键选择性吸收，从而导致量子化振动能级之间的跃迁。13 即使在最低能量状态（称为零点能量）下，分子键也具有内在的振动能量。14 红外辐射的吸收提供了将分子从较低振动状态提升到较高振动状态所需的精确能量。15 每种类型的化学键都具有与其相关的特征振动频率，该频率对应于这些量子化的能量差"
+  },
+  {
+    "id": "TB0006",
+    "original": "Received: March 28, 2024 Revised: June 28, 2024 Accepted: June 28, 2024 Published: July 15, 2024",
+    "translation": null
+  },
+  {
+    "id": "TB0007",
+    "original": "levels.16 This characteristic absorption allows IR spectroscopy to detect and analyze the structural features of organic compounds effectively.15",
+    "translation": null
+  },
+  {
+    "id": "TB0008",
+    "original": "The IR spectra produced from IR spectroscopy are typically investigated by manually marking all relevant peaks corresponding to specific functional groups. Even with the expertise of researchers and the assistance of available documents, this manual procedure is time-consuming, especially in the case of complex compounds. Moreover, various physical and chemical factors that affect the sample's constituents may cause changes in the structural environment of specific functional groups,",
+    "translation": "红外光谱产生的IR光谱通常通过手动标记与特定官能团相对应的所有相关峰来研究。即使有研究人员的专业知识和可用文件的帮助，这种手动过程也很耗时，尤其是在复杂化合物的情况下。此外，影响样品成分的各种物理和化学因素可能会导致特定官能团的结构环境发生变化，"
+  },
+  {
+    "id": "TB0009",
+    "original": "leading to notable deviations in those groups' typical peak frequencies from their representative ranges.17 There might be an overlap phenomenon in the fingerprint region (400−1500 cm−1 \n) of most IR spectra. Because each material's distinctive properties are contained in this frequency band, it becomes much more difficult for researchers to identify specific peaks and corresponding functional groups. To reduce the inefficiency of manual interpretation, the computer and AIaided approach such as innovative deep learning (DL) is suggested when analyzing the IR spectra.",
+    "translation": "导致这些基团的典型峰值频率与其代表性范围产生显着偏差。17 大多数IR光谱的指纹区 (400−1500 cm−1 \n) 可能存在重叠现象。由于每种材料的独特属性都包含在此频段中，因此研究人员更难以识别特定峰和相应的官能团。为了减少手动解释的低效率，建议在分析IR光谱时采用计算机和AI辅助方法，例如创新的深度学习 (DL)。"
+  },
+  {
+    "id": "TB0010",
+    "original": "Figure 1. Distribution of (A) training data set, (B) validation data set, and (C) test data set.",
+    "translation": null
+  },
+  {
+    "id": "TB0011",
+    "original": "DL is a subset of machine learning that harnesses neural networks to process data like human brains. These computer models are trained to extract features from raw data and make predictions and classifications. DL models can be trained in chemistry to predict the presence or absence of specific functional groups in chemical compounds based on IR spectra.18 This is particularly useful when dealing with complex spectra with multiple overlapping peaks.19 Recently, several studies were reported using DL models to investigate the IR spectra. The most successful and efficient model presented in this field is the convolutional neuron network (CNN) or CNN-based model,18−27 recognized for its remarkable efficacy in predicting functional groups. However, evaluating these models solely based on functional group prediction precision may lead to an incomplete assessment. It is imperative to also consider the accuracy of the model in predicting entire molecules. This consideration arises from data imbalance issues, where certain functional groups are more prevalent than others within the data set. To illustrate, if a molecule comprises five functional groups and a model accurately predicts four out of the five, conventional accuracy metrics may suggest an 80% success rate. However, from the perspective of predicting the entire molecule, the accuracy would be 0%. This underscores the need for a more comprehensive evaluation framework encompassing functional group prediction precision and compound-level accuracy.",
+    "translation": "DL是机器学习的一个子集，它利用神经网络像人脑一样处理数据。这些计算机模型经过训练，可以从原始数据中提取特征并进行预测和分类。DL模型可以在化学中进行训练，以基于IR光谱预测化学化合物中是否存在特定官能团。18 这在处理具有多个重叠峰的复杂光谱时特别有用。19 最近，有几项研究报告使用DL模型来研究IR光谱。该领域中最成功和有效的模型是卷积神经网络 (CNN) 或基于CNN的模型，18−27 因其在预测官能团方面的卓越功效而得到认可。然而，仅基于官能团预测精度评估这些模型可能会导致不完整的评估。必须还要考虑模型在预测整个分子方面的准确性。这种考虑源于数据不平衡问题，其中某些官能团在数据集中比其他官能团更普遍。为了说明，如果一个分子包含五个官能团，并且一个模型准确地预测了五个中的四个，则传统的准确性指标可能表明成功率为80％。但是，从预测整个分子的角度来看，准确性将为0％。这突显了需要一个更全面的评估框架，包括官能团预测精度和化合物水平的准确性。"
+  },
+  {
+    "id": "TB0012",
+    "original": "In recent years, transformer models have emerged as the cornerstone of various machine learning applications, revolutionizing the field with their remarkable capabilities in handling diverse data types such as signals, images, speech, and text.28 The transformer architecture, initially introduced for natural language processing tasks,29 has showcased exceptional performance across various domains, including translation,30,31 time series forecasting,32−34 and signal classification.35−39 Overview of the existing landscape of machine learning models for functional group characterization, traditional models, such as 1D-CNNs, recurrent neural networks (RNNs),40 and long short-term memory,41 have historically dominated functional",
+    "translation": "近年来，transformer模型已成为各种机器学习应用的基石，以其在处理各种数据类型（如信号、图像、语音和文本）方面的卓越能力彻底改变了该领域。28 transformer架构最初是为自然语言处理任务而引入的，29 在包括翻译,30,31 时间序列预测,32−34 和信号分类在内的各个领域都表现出了卓越的性能。35−39 官能团表征的机器学习模型现有格局概述，传统模型，例如1D-CNN、循环神经网络 (RNN)40 和长短期记忆41 历来在功能方面占据主导地位"
+  },
+  {
+    "id": "TB0013",
+    "original": "group analysis tasks.19,27,36,42−47 Despite these achievements, there remains a noticeable gap in the literature regarding the application of transformer models to chemical spectra signals, particularly in the functional group characterization data sets.",
+    "translation": "组分析任务。19,27,36,42−47 尽管取得了这些成就，但在文献中，关于将transformer模型应用于化学光谱信号，尤其是在官能团表征数据集中，仍然存在明显的差距。"
+  },
+  {
+    "id": "TB0014",
+    "original": "To explore the potential benefits and challenges associated with adopting transformer approaches in this domain, an attention-based transformer model was utilized for predicting the function groups within IR spectra. The architecture of the transformer model, encompassing 17 multilabel functional groups as inputs, is depicted in Figure 1. The model's performance was evaluated by assessing both the accuracy of functional group predictions and the precision of compoundlevel predictions.",
+    "translation": "为了探索在该领域采用transformer方法相关的潜在益处和挑战，利用基于注意力的transformer模型来预测IR光谱中的官能团。transformer模型的架构，包括17个多标签官能团作为输入，如图1所示。通过评估官能团预测的准确性和化合物水平预测的精度来评估模型的性能。"
+  },
+  {
+    "id": "TB0015",
+    "original": "Data Collection and Functional Groups Assignment. We obtained the FTIR absorbance spectra for all compounds from the National Institute of Standards and Technology (NIST) Chemistry WebBook.48 These spectra were initially downloaded in the JDX format and subsequently converted to XY files. Finally, all converted spectra were consolidated and stored in a single CSV file, as per the specifications outlined in a species file. We match the ID of each compound to the IUPAC InChi strings by using the PubChem API.49 Substructure matching was afterward carried out by RDKit on each string to determine whether a predetermined compound topology was present.50 Each SMARTS string was tested independently and if a match was found, the functional group was classified as belonging to the corresponding compound. Another group of spectra�an external data set�including 17 spectra was downloaded from the Emission Measurement Center Spectral Database. All spectra were processed the same way as those from the NIST Chemistry WebBook.",
+    "translation": "数据收集和官能团分配。我们从National Institute of Standards and Technology (NIST) Chemistry WebBook.48获得了所有化合物的FTIR吸收光谱。这些光谱最初以JDX格式下载，然后转换为XY文件。最后，按照物种文件中概述的规范，将所有转换后的光谱合并并存储在单个CSV文件中。我们使用PubChem API.49将每种化合物的ID与IUPAC InChi字符串匹配。之后，RDKit在每个字符串上进行亚结构匹配，以确定是否存在预定的化合物拓扑。50 独立测试每个SMARTS字符串，如果找到匹配项，则将官能团分类为属于相应的化合物。另一组光谱（外部数据集）包括从Emission Measurement Center Spectral Database下载的17个光谱。所有光谱的处理方式与NIST Chemistry WebBook中的光谱相同。"
+  },
+  {
+    "id": "TB0016",
+    "original": "Framework. Figure 2 depicts the comprehensive FITR functional groups classification flowchart, encompassing the preparation of input spectra, data segmentation into functional groups within a single molecule, training-validation-testing data",
+    "translation": "框架。图2描述了全面的FITR官能团分类流程图，包括输入光谱的准备、数据分割为单个分子内的官能团、训练-验证-测试数据"
+  },
+  {
+    "id": "TB0017",
+    "original": "Figure 2. Process for classifying FTIR spectra using two models, one based on convolutional neural network (IRCNN) and the other on transformer architecture.",
+    "translation": null
+  },
+  {
+    "id": "TB0018",
+    "original": "splicing, utilization of a DL network, optimization of hyperparameters, model comparison, postprocessing, and the deployment of the model. First, the spectra, initially presented in XY format within a CSV file, underwent conversion into a unified 1D-array data set in NumPy format. Each data was then paired with a corresponding text annotation file. To ensure uniformity, all spectra were standardized to a consistent set of feature points (3600 points spanning the range from 400 to 4000 cm−1 \n) by employing the linear interpolation method, as defined in eq 1. The spectra data concerning the number of functional groups that existed in each molecule were also investigated. The maximum number of functional groups in a single molecule is seven, and the distribution of each group reveals an imbalance, as illustrated in Figure S1A−C. Spectra were then segmented into seven groups to address this imbalance. This method ensures that models are trained and evaluated on data sets accurately representing the distribution of functional groups, thereby promoting a more balanced data set regarding the number of functional groups per molecule.51 Subsequently, all groups were randomly partitioned into training, validation, and test sets with allocation ratios of 75, 15, and 10%, respectively. During the training process, input spectra values were scaled to a range of 0 to 1 using the min− max normalization method, ensuring consistent data scales.",
+    "translation": "拼接、DL网络的利用、超参数的优化、模型比较、后处理以及模型的部署。首先，最初以CSV文件中XY格式呈现的光谱被转换为NumPy格式的统一一维数组数据集。然后，将每个数据与相应的文本注释文件配对。为了确保均匀性，通过采用线性插值法（如公式1中所定义），将所有光谱标准化为一组一致的特征点（3600个点，范围从400到4000 cm−1 \n）。还研究了有关每个分子中存在的官能团数量的光谱数据。单个分子中官能团的最大数量为7个，并且每个基团的分布显示出不平衡，如图S1A−C所示。然后将光谱分为七个组以解决这种不平衡。此方法确保模型在准确表示官能团分布的数据集上进行训练和评估，从而促进了关于每个分子官能团数量的更平衡的数据集。51 随后，所有组被随机划分为训练集、验证集和测试集，分配比率分别为75％、15％和10％。在训练过程中，使用min− max归一化方法将输入光谱值缩放到0到1的范围，从而确保一致的数据比例。"
+  },
+  {
+    "id": "TB0019",
+    "original": "We conducted a multilabel classification with 17 classes of functional groups, assessing the performance of both the CNN-based model27 (specifically IRCNN, a published model) and our proposed transformer-based model based on the test set. The external data set was used to further evaluate our model's reliability. Two classical machine learning classifiers: decision trees (DTs) and K-nearest neighbors (KNN) were also used to compare with our proposed model.",
+    "translation": "我们对17类官能团进行了多标签分类，基于测试集评估了基于CNN的模型27（特别是IRCNN，一种已发布的模型）和我们提出的基于transformer的模型的性能。外部数据集用于进一步评估我们模型的可靠性。还使用了两种经典的机器学习分类器：决策树 (DT) 和 K-最近邻 (KNN) 与我们提出的模型进行比较。"
+  },
+  {
+    "id": "TB0020",
+    "original": "y y x x y y x x \n( )( ) 1 \n1 1 2 2 1 \n=  + (1)",
+    "translation": null
+  }
+]

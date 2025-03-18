@@ -1,0 +1,102 @@
+[
+  {
+    "id": "TB0041",
+    "original": "F1 \n2 precision recall precision recall = × × + \n(7)",
+    "translation": null
+  },
+  {
+    "id": "TB0042",
+    "original": "where TP, TN, FP, FN represent the number of true positive, true negative, false positive, and false negative samples, respectively.",
+    "translation": null
+  },
+  {
+    "id": "TB0043",
+    "original": "n EMR I Y Y \n1 ( ) i \nn i i 1 \n=  = =  (8)",
+    "translation": null
+  },
+  {
+    "id": "TB0044",
+    "original": "where n is the number of testing signals, Yi and \nYi are true labels and predicted labels for spectral i.",
+    "translation": null
+  },
+  {
+    "id": "TB0045",
+    "original": "Training Results. The data set was randomly divided into three subsets: training (75%), validation (15%), and testing (10%), facilitating rigorous investigation into the training and evaluation of the proposed DL models. Following training and hyperparameter tuning, the model underwent validation over 600 epochs. A conventional IRCNN model was trained and validated in parallel with the proposed Fcg-former, enabling direct comparison within the confines of the same data set. As depicted in Figure 5, the loss function of the Fcg-former model exhibits a reliable reduction indicative of optimal convergence, whereas the IRCNN model stops training early under predefined stopping criteria. The optimal epochs for Fcgformer and IRCNN are identified at 585 and 115, respectively.",
+    "translation": "训练结果。数据集随机分为训练集(75%)、验证集(15%)和测试集(10%)，以便严格考察所提出的DL模型的训练和评估。训练和超参数调整后，模型经过600个epoch的验证。传统的IRCNN模型与提出的Fcg-former并行训练和验证，以便在同一数据集范围内进行直接比较。如图5所示，Fcg-former模型的损失函数表现出可靠的降低，表明最佳收敛，而IRCNN模型在预定义的停止标准下提前停止训练。Fcgformer和IRCNN的最佳epoch分别确定为585和115。"
+  },
+  {
+    "id": "TB0046",
+    "original": "Prediction of Functional Groups. The ROC curve, PR curve, and the overall functional group confusion matrix are presented in Figure 6. The predictive outcomes of both IRCNN, Fcg-former, DTs, and KNN models on the testing subdata set were calculated based on the confusion matrices",
+    "translation": "功能团预测。ROC curve、PR curve和整体功能团混淆矩阵如图6所示。基于混淆矩阵，计算了IRCNN、Fcg-former、DTs和KNN模型在测试子数据集上的预测结果"
+  },
+  {
+    "id": "TB0047",
+    "original": "and shown in Table 2. In terms of accuracy, both models demonstrate high performance, with Fcg-former slightly outperforming IRCNN by achieving an accuracy of 0.9715 compared to 0.9613. Both models also demonstrate strong precision values, indicating high accuracy in positive predictions (0.9355 versus 0.9396). However, the Fcg-former model exhibits better recall (0.9227), capturing a higher proportion of actual positive instances in the data set compared to IRCNN (0.8754). The Fcg-former model's improved recall suggests its effectiveness in capturing a broader range of functional groups within IR spectra, potentially due to its attention architecture. The F1-score, a harmonic mean of precision and recall, further confirms the overall superior performance of Fcg-former, with a score of 0.929 compared to 0.9063 for IRCNN. Additionally, Fcgformer demonstrates a higher EMR of 0.702 compared to 0.6249 for IRCNN, indicating its capability to accurately predict all functional groups within a given molecule (Figure 7).",
+    "translation": "如表2所示。在准确率方面，两种模型都表现出高性能，Fcg-former略优于IRCNN，准确率分别为0.9715和0.9613。两种模型也表现出很强的precision值，表明在正预测中具有很高的准确率（0.9355 vs 0.9396）。然而，Fcg-former模型表现出更好的recall（0.9227），与IRCNN（0.8754）相比，捕获了数据集中更高比例的实际正实例。Fcg-former模型改进的recall表明其在捕获IR光谱中更广泛的功能团方面的有效性，这可能是由于其attention架构。F1-score（precision和recall的调和平均值）进一步证实了Fcg-former的总体优越性能，其得分为0.929，而IRCNN为0.9063。此外，Fcgformer表现出更高的EMR，为0.702，而IRCNN为0.6249，表明其能够准确预测给定分子中的所有功能团（图7）。"
+  },
+  {
+    "id": "TB0048",
+    "original": "Furthermore, regarding resource management, despite Fcgformer having significantly fewer trainable parameters (6,210,065) compared to IRCNN (61,540,416), it still achieves comparable performance. Also, Fcg-former requires substantially less GPU RAM, with an estimate of 142 MB compared to 1409 MB for IRCNN, making it more memoryefficient. Notably, while IRCNN employs optimal threshold tuning for individual functional groups, resulting in enhanced accuracy evaluation, our study adopts a uniform threshold (0.5) for all functional groups. This approach highlights the",
+    "translation": "此外，在资源管理方面，尽管Fcgformer的可训练参数（6,210,065）明显少于IRCNN（61,540,416），但它仍然实现了相当的性能。此外，Fcg-former需要的GPU RAM也少得多，估计为142 MB，而IRCNN为1409 MB，使其更具内存效率。值得注意的是，虽然IRCNN对单个功能团采用最佳阈值调整，从而提高了准确性评估，但我们的研究对所有功能团采用统一阈值（0.5）。这种方法突出了"
+  },
+  {
+    "id": "TB0049",
+    "original": "Figure 5. (A)Validation loss during training of IRCNN and Fcg-former; (B) learning rate scheduler.",
+    "translation": null
+  },
+  {
+    "id": "TB0050",
+    "original": "reliability of our proposed Fcg-former attention model in functional group prediction. Figures S2 and S3 show the confusion matrix of individual functional group prediction results of both models, revealing similarities to their overall performance, and confirming the enhanced performance of Fcg-former over IRCNN in predicting functional groups within IR spectra analysis.",
+    "translation": "我们提出的Fcg-former attention模型在功能团预测中的可靠性。图S2和S3显示了两种模型对单个功能团预测结果的混淆矩阵，揭示了它们与整体性能的相似性，并证实了Fcg-former在IR光谱分析中预测功能团方面优于IRCNN的增强性能。"
+  },
+  {
+    "id": "TB0051",
+    "original": "The conventional machine learning techniques DTs and KNN also exhibit performance characteristics in the context of functional group prediction. The functional group confusion matrices for DTs and KNN are depicted in Figures 6E,F, S4, and S5, while their compound-level confusion matrices are illustrated in Figures 7C and 7D. DTs achieve an accuracy of 0.945, a recall of 0.8619, and a precision of 0.8625, resulting in an F1-score of 0.8622. While DTs offer a balance between",
+    "translation": "传统的机器学习技术DTs和KNN也在功能团预测的背景下表现出性能特征。DTs和KNN的功能团混淆矩阵如图6E、F、S4和S5所示，而它们的化合物级混淆矩阵如图7C和7D所示。DTs的准确率为0.945，recall为0.8619，precision为0.8625，因此F1-score为0.8622。虽然DTs在"
+  },
+  {
+    "id": "TB0052",
+    "original": "Figure 6. ROC and PR curve of (A) the IRCNN model and (B) the Fcg-former; the functional group confusion matrix of (C) the IRCNN model, (D) the Fcg-former model, (E) the DTs model, and (F) the KNN model performed on the test data set.",
+    "translation": "图6. (A) IRCNN模型和(B) Fcg-former的ROC and PR curve；(C) IRCNN模型，(D) Fcg-former模型，(E) DTs模型和(F) KNN模型在测试数据集上执行的功能团混淆矩阵。"
+  },
+  {
+    "id": "TB0053",
+    "original": "input: input spectrum output: self-attention map for each patch in sequence: for each attention head:",
+    "translation": null
+  },
+  {
+    "id": "TB0054",
+    "original": "calculate query, key, and value for the current patch calculate attention scores between the current patch and all other patches",
+    "translation": null
+  },
+  {
+    "id": "TB0055",
+    "original": "apply softmax to obtain attention weights store attention weights for each patch",
+    "translation": null
+  },
+  {
+    "id": "TB0056",
+    "original": "calculate mean attention scores across all attention heads represent mean attention scores as a color map",
+    "translation": null
+  },
+  {
+    "id": "TB0057",
+    "original": "precision and recall, their EMR is relatively lower at 0.4941, indicating moderate effectiveness in predicting all functional groups within a molecule correctly. On the other hand, KNN shows an accuracy of 0.9296, with a recall of 0.8698 and a lower precision of 0.7607, leading to an F1-score of 0.8116. The KNN model has an even lower EMR of 0.3151, suggesting it struggles more with accurately identifying the full set of functional groups. Overall, the DL models, IRCNN and Fcgformer, significantly outperformed the classical machine learning approaches, DTs, and KNN, particularly regarding the EMR. This highlights the superior ability of DL techniques to handle compound-level predictions, demonstrating a clear advantage over traditional machine learning methods in capturing the complexity of functional group identification.",
+    "translation": "precision和recall之间提供了平衡，但它们的EMR相对较低，为0.4941，表明在正确预测分子内的所有功能团方面具有中等有效性。另一方面，KNN的准确率为0.9296，recall为0.8698，precision较低，为0.7607，导致F1-score为0.8116。KNN模型的EMR甚至更低，为0.3151，表明它在准确识别全套功能团方面更加困难。总的来说，DL模型IRCNN和Fcgformer明显优于传统的机器学习方法DTs和KNN，尤其是在EMR方面。这突出了DL技术处理化合物级预测的卓越能力，表明在捕获功能团识别的复杂性方面，DL技术比传统机器学习方法具有明显的优势。"
+  },
+  {
+    "id": "TB0058",
+    "original": "The robustness of our models is evident in their performance on both the initial test data set and the external data set. As shown in Figures S6, S7, and Table S1, while there is a slight decrease in performance metrics when evaluated on the external data set, the Fcg-former model consistently shows better performance, indicating its stability and reduced",
+    "translation": "我们模型的鲁棒性在它们在初始测试数据集和外部数据集上的性能中显而易见。如图S6、S7和表S1所示，虽然在外部数据集上评估时性能指标略有下降，但Fcg-former模型始终表现出更好的性能，表明其稳定性和降低的"
+  },
+  {
+    "id": "TB0059",
+    "original": "likelihood of overfitting compared to the classical machine learning models. On the initial test data set, the Fcg-former achieved the highest accuracy (0.9715) and EMR (0.702), outperforming IRCNN, DTs, and KNN. On the external data set, the Fcg-former maintained its superior performance with an accuracy of 0.9585 and an EMR of 0.6471, demonstrating its ability to generalize well to new data. The results indicate that the DL models, particularly Fcg-former, exhibit robust generalization capabilities without significant overfitting, especially in dealing with complex compound-level predictions. We believe these measures address the concern regarding data set independence and provide a comprehensive assessment of our models' performance.",
+    "translation": "与传统机器学习模型相比，过拟合的可能性。在初始测试数据集中，Fcg-former实现了最高的准确率（0.9715）和EMR（0.702），优于IRCNN、DTs和KNN。在外部数据集中，Fcg-former保持了其卓越的性能，准确率为0.9585，EMR为0.6471，表明其能够很好地泛化到新数据。结果表明，DL模型，特别是Fcg-former，表现出强大的泛化能力，没有明显的过拟合，尤其是在处理复杂的化合物级预测时。我们相信这些措施解决了关于数据集独立性的问题，并提供了对我们模型性能的全面评估。"
+  },
+  {
+    "id": "TB0060",
+    "original": "Self-Attention Map in Functional Group Prediction. Figure 8 depicts an example of the attention map generated during the processing of IR spectra and its corresponding outputs. In the calculation process, attention scores are computed for each patch in a sequence by comparing it to all other patches. This is achieved by calculating the dot product between the Query of the current patch and the Key",
+    "translation": "功能团预测中的Self-Attention Map。图8描述了在处理IR光谱及其相应输出期间生成的attention map的示例。在计算过程中，通过将序列中的每个patch与其他所有patch进行比较来计算其attention score。这是通过计算当前patch的Query和Key之间的点积来实现的"
+  }
+]

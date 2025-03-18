@@ -1,0 +1,102 @@
+[
+  {
+    "id": "TB0061",
+    "original": "Figure 7. Compound-level functional group confusion matrix of (A) the IRCNN model, (B) the Fcg-former model, (C) the DTs model, and (D) the KNN model performed on the test data set.",
+    "translation": null
+  },
+  {
+    "id": "TB0062",
+    "original": "of every other patch, followed by a softmax activation (as depicted in eq 2). These attention scores, calculated for each head, provide insight into the significance of different patches with one another (Table 1). Upon examination, the attention model demonstrates a notable focus on relevant peaks within the spectra. The attention model accurately identifies the strong absorption bands associated with the alcohol functional group, particularly at 3600 cm−1 . However, for groups such as alkane and methyl, whose absorption bands overlap within the 2800−3000 cm−1 range, the attention transformer detects these features less prominently, reflecting their weaker signals. Moreover, the prominent peak observed at 1700−1750 cm−1 , revealing ester stretching vibrations and potentially carboxylic acid groups, receives significant attention from the model.",
+    "translation": "每个patch后接softmax激活 (如eq 2所示)。注意力分数揭示了不同patch间的重要性(Table 1)。该模型对光谱中的相关峰表现出显著关注，能准确识别醇类官能团在3600 cm−1 处的强吸收带。对于烷烃和甲基等在2800−3000 cm−1 范围内吸收带重叠的基团，模型检测到的特征较弱。此外，在1700−1750 cm−1 处观察到的酯伸缩振动峰，模型给予了显著关注。"
+  },
+  {
+    "id": "TB0063",
+    "original": "During the training phase, the attention transformer algorithm learns and defines the bonding interactions among various functional groups. This acquired knowledge allows the model to predict the potential presence of specific functional groups within the unknown molecules.",
+    "translation": "在训练阶段，注意力transformer算法学习并定义了各种官能团之间的键合相互作用。 这些知识使模型能够预测未知分子中特定官能团的潜在存在。"
+  },
+  {
+    "id": "TB0064",
+    "original": "Deployment of Fcg-Former. Fcg-former is an opensource library dedicated to making strides in chemical signal research accessible to the wider machine-learning community. It offers meticulously designed FcgFormer architectures through a unified API. Fcg-former emphasizes extensibility for researchers, simplicity for practitioners, and efficiency and reliability for tasks like fine-tuning and deployment.",
+    "translation": "Fcg-Former的部署。Fcg-former是一个开源库，致力于使化学信号研究更容易被机器学习社区访问。它通过统一的API提供精心设计的FcgFormer架构。Fcg-former强调研究人员的可扩展性，从业人员的简单性以及微调和部署等任务的效率和可靠性。"
+  },
+  {
+    "id": "TB0065",
+    "original": "Additionally, users can access the library and its associated Hugging Face application, powered by Gradio, at https://",
+    "translation": null
+  },
+  {
+    "id": "TB0066",
+    "original": "Figure 8. Self-Attention mechanism works on ethyl hydrogen fumarate compound. Each cell (patch index) in the figure reflects how attention heads distribute their attention across different parts of the input. This visualization helps understand which patches receive more focus from specific attention heads during the model's processing.",
+    "translation": "图8. 自注意力机制在富马酸单乙酯化合物上的工作原理。图中的每个单元格（patch索引）反映了注意力头如何在输入的不同部分分配其注意力。这种可视化有助于理解在模型的处理过程中，哪些patch受到特定注意力头的更多关注。"
+  },
+  {
+    "id": "TB0067",
+    "original": "Figure 9. Functional group prediction result performed on the web-based application.",
+    "translation": null
+  },
+  {
+    "id": "TB0068",
+    "original": "huggingface.co/spaces/lycaoduong/FcgFormerApp. The HuggingFace App prediction result is shown in Figure 9. Other examples of our model deployment were demonstrated in Figures S8−S11.",
+    "translation": null
+  },
+  {
+    "id": "TB0069",
+    "original": "In conclusion, this study presents a novel approach utilizing a transformer attention model for the prediction of functional groups in FTIR spectra. Our findings underscore the importance of exploring cutting-edge DL techniques in spectroscopy, paving the way for future research avenues aimed at enhancing spectral analysis and interpretation. As the field continues to evolve, integrating transformer-based models into analytical workflows could lead to significant advancements in compound characterization and identification. Our model demonstrates better performance compared to conventional CNN architectures, both in terms of functional group prediction accuracy (0.9715 over 0.9613) and compound-level accuracy (0.702 over 0.6249). The success of our transformer attention model highlights the efficacy of self-attention mechanisms in capturing intricate spectral patterns and relationships, thus enabling more accurate predictions. Overall, this work contributes to the ongoing convergence of artificial intelligence and spectroscopic analysis, offering a robust framework for accurate and efficient functional group prediction in FTIR spectra.",
+    "translation": "总之，本研究提出了一种新方法，利用transformer注意力模型预测FTIR光谱中的官能团。研究结果强调了探索光谱学中尖端DL技术的重要性，为未来旨在增强光谱分析和解释的研究途径铺平了道路。随着该领域的不断发展，将基于transformer的模型集成到分析工作流程中可能会在化合物表征和识别方面取得重大进展。我们的模型在官能团预测准确率（0.9715 vs 0.9613）和化合物级别准确率（0.702 vs 0.6249）方面均优于传统CNN架构。transformer注意力模型的成功突出了自注意力机制在捕获复杂光谱模式和关系方面的有效性，从而实现更准确的预测。总的来说，这项工作有助于人工智能和光谱分析的持续融合，为FTIR光谱中准确有效的官能团预测提供了一个强大的框架。"
+  },
+  {
+    "id": "TB0070",
+    "original": "The data sets used in this study are available from the NIST Chemistry WebBook https://webbook.nist.gov and Emission Measurement Center Spectral Database https://www3.epa. gov/ttn/emc/ftir/refnam.html. The Python code implementation of Fcg-former, model checkpoints, and all data sets used in this study are available on GitHub at https://github.com/ lycaoduong/FcgFormer.",
+    "translation": "本研究中使用的数据集可从NIST Chemistry WebBook https://webbook.nist.gov 和 Emission Measurement Center Spectral Database https://www3.epa. gov/ttn/emc/ftir/refnam.html 获取。Fcg-former的Python代码实现、模型检查点和本研究中使用的所有数据集可在GitHub上获取：https://github.com/ lycaoduong/FcgFormer."
+  },
+  {
+    "id": "TB0071",
+    "original": "The Supporting Information is available free of charge at https://pubs.acs.org/doi/10.1021/acs.analchem.4c01622.",
+    "translation": null
+  },
+  {
+    "id": "TB0072",
+    "original": "The data set distribution regarding the number of functional groups within each molecule. The IRCNN, Fcg-former, DTs, and KNN performance summary on the external data set. The confusion matrix of each functional group from IRCNN, Fcg-former, DTs, and KNN models performed on the test data set. The functional group and compound-level confusion matrix of IRCNN, Fcg-former, DTs, and KNN models performed on the external data set. Examples of model deployment. Please refer to Supporting Information for additional details (PDF)",
+    "translation": "关于每个分子中官能团数量的数据集分布。IRCNN、Fcg-former、DTs和KNN在外部数据集上的性能总结。IRCNN、Fcg-former、DTs和KNN模型在测试数据集上执行的每个官能团的混淆矩阵。IRCNN、Fcg-former、DTs和KNN模型在外部数据集上执行的官能团和化合物级别的混淆矩阵。模型部署示例。有关更多详细信息，请参阅支持信息（PDF）。"
+  },
+  {
+    "id": "TB0073",
+    "original": "Byeongil Lee − Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea; Email: bilee@pknu.ac.kr Junghwan Oh − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea; Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering,",
+    "translation": "Byeongil Lee − Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea; Email: bilee@pknu.ac.kr Junghwan Oh − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea; Digital Healthcare Research Center and Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering,"
+  },
+  {
+    "id": "TB0074",
+    "original": "Pukyong National University, Busan 48513, Republic of Korea; Ohlabs Corp., Busan 48513, Republic of Korea; orcid.org/0000-0002-5837-0958; Phone: +82-51-629- 5771; Email: jungoh@pknu.ac.kr; Fax: +82-51-629-5779",
+    "translation": "Pukyong National University, Busan 48513, Republic of Korea; Ohlabs Corp., Busan 48513, Republic of Korea; orcid.org/0000-0002-5837-0958; Phone: +82-51-629- 5771; Email: jungoh@pknu.ac.kr; Fax: +82-51-629-5779"
+  },
+  {
+    "id": "TB0075",
+    "original": "Vu Hoang Minh Doan − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea Cao Duong Ly − Research and Development Department, Senior AI Research Engineer, Vision-in Inc., Seoul 08505, Republic of Korea Sudip Mondal − Digital Healthcare Research Center, Pukyong National University, Busan 48513, Republic of Korea; orcid.org/0000-0002-0638-9657 Thi Thuy Truong − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Tan Dung Nguyen − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Jaeyeop Choi − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea",
+    "translation": "Vu Hoang Minh Doan − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea Cao Duong Ly − Research and Development Department, Senior AI Research Engineer, Vision-in Inc., Seoul 08505, Republic of Korea Sudip Mondal − Digital Healthcare Research Center, Pukyong National University, Busan 48513, Republic of Korea; orcid.org/0000-0002-0638-9657 Thi Thuy Truong − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Tan Dung Nguyen − Industry 4.0 Convergence Bionics Engineering, Department of Biomedical Engineering, Pukyong National University, Busan 48513, Republic of Korea Jaeyeop Choi − Smart Gym-Based Translational Research Center for Active Senior's Healthcare, Pukyong National University, Busan 48513, Republic of Korea"
+  },
+  {
+    "id": "TB0076",
+    "original": "Complete contact information is available at: https://pubs.acs.org/10.1021/acs.analchem.4c01622",
+    "translation": null
+  },
+  {
+    "id": "TB0077",
+    "original": "# \nV.H.M.D., C.D.L. and S.M. contributed equally to this work.",
+    "translation": null
+  },
+  {
+    "id": "TB0078",
+    "original": "The authors declare no competing financial interest.",
+    "translation": null
+  },
+  {
+    "id": "TB0079",
+    "original": "This work was supported by the National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT) (no. 2022R1A5A8023404).",
+    "translation": null
+  },
+  {
+    "id": "TB0080",
+    "original": "(1) Struyf, J. J. J. Chem. Educ. 2011, 88 (7), 937−943.",
+    "translation": null
+  }
+]
